@@ -13,4 +13,4 @@ Dersom du skal hente kode fra en spesifikk branch:
 git pull origin <navnet på branchen inni disse klemmeparantesene, men ikke ha med krokkodilleparantesene>
 
 Dersom du skal opprette mappa fra Github repository:
-git clone 
+git clone https://github.uio.no/chakkh/IN2000.git
