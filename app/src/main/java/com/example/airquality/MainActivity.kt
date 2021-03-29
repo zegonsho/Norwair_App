@@ -1,6 +1,5 @@
 package com.example.airquality
 
-import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         // Create searchview and listener
         val searchView: SearchView = findViewById(R.id.search)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            // When quer is submitted
+            // When query is submitted
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()){
                     searchCounty(query, testList)
