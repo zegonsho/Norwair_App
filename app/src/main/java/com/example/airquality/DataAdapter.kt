@@ -3,19 +3,20 @@ package com.example.airquality
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-data class DataAdapter(val list: MutableList<Data>) : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+data class DataAdapter(val list: MutableList<Data>): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
     private val dataList = list
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Insert values in cardview
+        var name: TextView = view.findViewById(R.id.PLACEHOLDER)
     }
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.card, viewGroup, false)
         return ViewHolder(view)
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, pos: Int) {
-        // Insert changes to values in cardview
+        viewHolder.name.text = dataList[pos].PLACEHOLDER
     }
     override fun getItemCount() = dataList.size
 }

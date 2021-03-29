@@ -8,34 +8,34 @@
         android:id="@+id/button_map"
         android:layout_width="128dp"
         android:layout_height="64dp"
+        android:layout_marginTop="520dp"
         android:text="MAP PL"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
     <Button
         android:id="@+id/button_main"
         android:layout_width="128dp"
         android:layout_height="64dp"
+        android:layout_marginTop="520dp"
         android:text="MAIN PL"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
     <Button
         android:id="@+id/button_info"
         android:layout_width="128dp"
         android:layout_height="64dp"
+        android:layout_marginTop="520dp"
         android:text="INFO PL"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.975"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
