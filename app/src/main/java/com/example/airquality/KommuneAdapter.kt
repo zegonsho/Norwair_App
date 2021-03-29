@@ -1,6 +1,8 @@
 package com.example.airquality
 
-class KommuneAdapter(val kommuner: MutableList<Kommune>): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+import androidx.recyclerview.widget.RecyclerView
+
+class KommuneAdapter(val kommuner: MutableList<Kommuner>): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
     private val dataList = list
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.PLACEHOLDER)
