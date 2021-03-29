@@ -1,9 +1,13 @@
 package com.example.airquality
 
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class KommuneAdapter(val kommuner: MutableList<Kommuner>): RecyclerView.Adapter<DataAdapter.ViewHolder>() {
-    private val dataList = list
+class KommuneAdapter(kommuner: MutableList<String>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>() {
+    private val dataList = kommuner
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.PLACEHOLDER)
     }
@@ -12,7 +16,7 @@ class KommuneAdapter(val kommuner: MutableList<Kommuner>): RecyclerView.Adapter<
         return ViewHolder(view)
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, pos: Int) {
-        viewHolder.name.text = dataList[pos].PLACEHOLDER
+        viewHolder.name.text = dataList[pos]
     }
     override fun getItemCount() = dataList.size
 }
