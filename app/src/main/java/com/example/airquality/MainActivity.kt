@@ -1,19 +1,17 @@
 package com.example.airquality
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.inputmethod.InputMethodManager
-import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.kittinunf.fuel.Fuel
-import com.github.kittinunf.fuel.coroutines.await
-import com.github.kittinunf.fuel.coroutines.awaitByteArray
 import com.github.kittinunf.fuel.coroutines.awaitString
 import com.google.gson.Gson
 import kotlinx.coroutines.runBlocking
+
 
 //API
 data class KommuneHolder(val kommunenavn: String?, val kommunenavnNorsk: String?, val kommunenummer: String?)
@@ -26,9 +24,9 @@ data class Kommuner (val kommuneNavn: String?, val fylkesnavn: String?)
 
 class MainActivity : AppCompatActivity() {
 
-    val kommuneString = mutableListOf<String>()
-    val kommuneList = mutableListOf<Kommuner>()
-    val gson = Gson()
+    private val kommuneString = mutableListOf<String>()
+    private val kommuneList = mutableListOf<Kommuner>()
+    private val gson = Gson()
     lateinit var recycle: RecyclerView
 
 
