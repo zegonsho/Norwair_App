@@ -15,10 +15,9 @@ import kotlinx.coroutines.runBlocking
 
 //API
 data class KommuneHolder(val kommunenavn: String?, val kommunenavnNorsk: String?, val kommunenummer: String?)
-data class KommuneListe (val kommuner: MutableList<KommuneHolder>)
 data class FylkeHolder (val fylkesnavn: String?, val fylkesnummer: String?)
-data class FylkeListe (val fylker: MutableList<FylkeHolder>)
-//API
+
+//Main
 data class Kommuner (val kommuneNavn: String?, val fylkesnavn: String?)
 
 
