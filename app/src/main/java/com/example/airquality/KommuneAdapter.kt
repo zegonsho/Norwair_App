@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class KommuneAdapter(private val kommuner: MutableList<String>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>() {
+class KommuneAdapter(private val kommuner: MutableList<String>, private val array: Array<Stasjon>, val adapterList: MutableList<Adapter>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>() {
     //private val dataList = kommuner
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -25,14 +25,17 @@ class KommuneAdapter(private val kommuner: MutableList<String>): RecyclerView.Ad
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, pos: Int) {
 
-        when(Random().nextInt(3)) {
+        /*when(Random().nextInt(3)) {
             0 -> {viewHolder.color.setBackgroundColor(Color.GREEN)}
             1 -> {viewHolder.color.setBackgroundColor(Color.YELLOW)}
             2 -> {viewHolder.color.setBackgroundColor(Color.parseColor("#FFA500"))}
             3 -> {viewHolder.color.setBackgroundColor(Color.RED)}
-        }
+        }*/
 
-        viewHolder.name.text = kommuner[pos]
+        //viewHolder.name.text = kommuner[pos]
+
+        viewHolder.name.text = adapterList[pos].kommuneNavn
+        viewHolder.color.setBackgroundColor(Color.parseColor("#${adapterList[pos].fargekode}"))
 
         viewHolder.cardView.setOnClickListener {
             val intent = Intent(it.context, CardViewClickActivity::class.java)

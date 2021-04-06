@@ -16,11 +16,36 @@ import kotlinx.coroutines.runBlocking
 //API
 data class KommuneHolder(val kommunenavn: String?, val kommunenavnNorsk: String?, val kommunenummer: String?)
 data class FylkeHolder (val fylkesnavn: String?, val fylkesnummer: String?)
-data class base(val name: String?, val path: String?, val longitude: String?, val latitude: String?, val areacode: String?, val areaclass: String?, val superareacode: String?)
+data class Areas(val zone: String?, val municipality: String?, val area: String?, val description: String?)
 
+
+data class Stasjon(
+        val id: Number?,
+        val zone: String?,
+        val municipality: String?,
+        val area: String?,
+        val station: String?,
+        val eoi: String?,
+        val type: String?,
+        val component: String?,
+        val fromTime: String?,
+        val toTime: String?,
+        val value: Number?,
+        val unit: String?,
+        val latitude: Number?,
+        val longitude: Number?,
+        val timestep: Number?,
+        val index: Number?,
+        val color: String?,
+        val isValid: Boolean?)
 //Main
 data class Kommuner (val kommuneNavn: String?, val fylkesnavn: String?)
+data class Adapter(val kommuneNavn: String?, val fargekode: String?)
 
+lateinit var stasjonArray: Array<Stasjon>
+lateinit var areasArray: Array<Areas>
+
+val adapterList = mutableListOf<Adapter>()
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,9 +53,8 @@ class MainActivity : AppCompatActivity() {
     private val kommuneList = mutableListOf<Kommuner>()
     private val gson = Gson()
     lateinit var recycle: RecyclerView
-    val areas: String = "areas="
-    val componentsPM10: String = "components=pm10"
-    val niluApi: String = "https://api.nilu.no/aq/utd?"
+    val stasjonsdataURLPM10 = "https://api.nilu.no/aq/utd?&components=pm10"
+    val lookupAreas = "https://api.nilu.no/lookup/areas"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +97,26 @@ class MainActivity : AppCompatActivity() {
                 val responseFylker= gson.fromJson(Fuel.get(baseURL+fylkeURL).awaitString(), Array<FylkeHolder>::class.java)
                 Log.d("fylkesize: ", responseFylker.size.toString())
 
+                stasjonArray = gson.fromJson(Fuel.get(stasjonsdataURLPM10).awaitString(), Array<Stasjon>::class.java)
+                Log.d("TEST1: ", stasjonArray.size.toString())
+
+                areasArray = gson.fromJson(Fuel.get(lookupAreas).awaitString(), Array<Areas>::class.java)
+                Log.d("TEST2: ", areasArray.size.toString())
+
+                for (dataAreas in areasArray) {
+                    //val dataAreas = element
+
+                    for (dataStasjon in stasjonArray) {
+                        //val dataStasjon = element
+
+                        if (dataAreas.area == dataStasjon.area) {
+                            val temp = Adapter(dataAreas.area, dataStasjon.color)
+                            adapterList.add(temp)
+                            break;
+                        }
+                    }
+                }
+
 
                 val sizeOfKommune = responseKommuner.size - 1
                 val sizeOfFylke = responseFylker.size - 1
@@ -99,7 +143,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         recycle = findViewById(R.id.recycle)
-        recycle.adapter = KommuneAdapter(kommuneString)
+        recycle.adapter = KommuneAdapter(kommuneString, stasjonArray, adapterList)
         recycle.layoutManager = LinearLayoutManager(this)
     }
 
