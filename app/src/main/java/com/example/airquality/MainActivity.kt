@@ -16,6 +16,7 @@ import kotlinx.coroutines.runBlocking
 //API
 data class KommuneHolder(val kommunenavn: String?, val kommunenavnNorsk: String?, val kommunenummer: String?)
 data class FylkeHolder (val fylkesnavn: String?, val fylkesnummer: String?)
+data class base(val name: String?, val path: String?, val longitude: String?, val latitude: String?, val areacode: String?, val areaclass: String?, val superareacode: String?)
 
 //Main
 data class Kommuner (val kommuneNavn: String?, val fylkesnavn: String?)
@@ -27,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     private val kommuneList = mutableListOf<Kommuner>()
     private val gson = Gson()
     lateinit var recycle: RecyclerView
+    val areas: String = "areas="
+    val componentsPM10: String = "components=pm10"
+    val niluApi: String = "https://api.nilu.no/aq/utd?"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +59,11 @@ class MainActivity : AppCompatActivity() {
         runBlocking {
             Log.d("first: ", "PASSED")
             try {
+
+                //val testMET = "https://api.met.no/weatherapi/airqualityforecast/0.1/areas?areaclass=kommune"
+                //val response = gson.fromJson(Fuel.get(testMET).awaitString(), base::class.java)
+                //Log.d("testMet: ", response.toString())
+
                 val baseURL = "https://ws.geonorge.no/kommuneinfo/v1"
                 val kommuneURL = "/kommuner"
                 val fylkeURL = "/fylker"
