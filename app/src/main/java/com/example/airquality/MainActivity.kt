@@ -94,14 +94,14 @@ class MainActivity : AppCompatActivity() {
                 //val response = gson.fromJson(Fuel.get(testMET).awaitString(), base::class.java)
                 //Log.d("testMet: ", response.toString())
 
-                val baseURL = "https://ws.geonorge.no/kommuneinfo/v1"
+                /*val baseURL = "https://ws.geonorge.no/kommuneinfo/v1"
                 val kommuneURL = "/kommuner"
                 val fylkeURL = "/fylker"
 
                 val responseKommuner = gson.fromJson(Fuel.get(baseURL + kommuneURL).awaitString(), Array<KommuneHolder>::class.java)
                 Log.d("kommunesize: ", responseKommuner.size.toString())
                 val responseFylker= gson.fromJson(Fuel.get(baseURL+fylkeURL).awaitString(), Array<FylkeHolder>::class.java)
-                Log.d("fylkesize: ", responseFylker.size.toString())
+                Log.d("fylkesize: ", responseFylker.size.toString())*/
 
                 stasjonArray = gson.fromJson(Fuel.get(niluStasjonsdataPM10).awaitString(), Array<Stasjon>::class.java)
                 Log.d("TEST1: ", stasjonArray.size.toString())
@@ -113,11 +113,7 @@ class MainActivity : AppCompatActivity() {
                 Log.d("TEST3: ", response.size.toString())*/
 
                 for (dataAreas in areasArray) {
-                    //val dataAreas = element
-
                     for (dataStasjon in stasjonArray) {
-                        //val dataStasjon = element
-
                         if (dataAreas.area == dataStasjon.area) {
                             val temp = Adapter(dataAreas.area, dataStasjon.color)
                             adapterList.add(temp)
@@ -127,7 +123,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
 
-                val sizeOfKommune = responseKommuner.size - 1
+              /*  val sizeOfKommune = responseKommuner.size - 1
                 val sizeOfFylke = responseFylker.size - 1
                 for (i in 0..sizeOfKommune) {
                     val curKommune = responseKommuner[i]
@@ -142,7 +138,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-                Log.d("result: ", kommuneString.toString())
+                Log.d("result: ", kommuneString.toString())*/
 
 
             }
@@ -152,7 +148,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         recycle = findViewById(R.id.recycle)
-        recycle.adapter = KommuneAdapter(kommuneString, stasjonArray, adapterList)
+        recycle.adapter = KommuneAdapter(adapterList)
         recycle.layoutManager = LinearLayoutManager(this)
     }
 

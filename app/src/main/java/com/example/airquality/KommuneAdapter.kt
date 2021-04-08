@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class KommuneAdapter(private val kommuner: MutableList<String>, private val array: Array<Stasjon>, val adapterList: MutableList<Adapter>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>() {
+class KommuneAdapter(private val adapterList: MutableList<Adapter>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>() {
     //private val dataList = kommuner
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -43,5 +43,5 @@ class KommuneAdapter(private val kommuner: MutableList<String>, private val arra
             //Toast.makeText(it.context,"this is toast message",Toast.LENGTH_SHORT).show()
         }
     }
-    override fun getItemCount() = kommuner.size
+    override fun getItemCount() = adapterList.size
 }
