@@ -18,6 +18,9 @@ data class KommuneHolder(val kommunenavn: String?, val kommunenavnNorsk: String?
 data class FylkeHolder (val fylkesnavn: String?, val fylkesnummer: String?)
 data class Areas(val zone: String?, val municipality: String?, val area: String?, val description: String?)
 
+data class MetApiKommune(val name: String?, val path: String?, val longitude: String?, val latitude: String?, val areacode: String?, val areaclass: String?, val superareacode: String?)
+
+
 
 data class Stasjon(
         val id: Number?,
@@ -53,8 +56,11 @@ class MainActivity : AppCompatActivity() {
     private val kommuneList = mutableListOf<Kommuner>()
     private val gson = Gson()
     lateinit var recycle: RecyclerView
-    val stasjonsdataURLPM10 = "https://api.nilu.no/aq/utd?&components=pm10"
-    val lookupAreas = "https://api.nilu.no/lookup/areas"
+    //API:
+    val niluStasjonsdataPM10 = "https://api.nilu.no/aq/utd?&components=pm10"
+    val niluLookupAreas = "https://api.nilu.no/lookup/areas"
+    val apiMetKommune = "https://api.met.no/weatherapi/airqualityforecast/0.1/areas?areaclass=kommune"
+    val apiMetStasjon = "https://api.met.no/weatherapi/airqualityforecast/0.1/stations"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,11 +103,14 @@ class MainActivity : AppCompatActivity() {
                 val responseFylker= gson.fromJson(Fuel.get(baseURL+fylkeURL).awaitString(), Array<FylkeHolder>::class.java)
                 Log.d("fylkesize: ", responseFylker.size.toString())
 
-                stasjonArray = gson.fromJson(Fuel.get(stasjonsdataURLPM10).awaitString(), Array<Stasjon>::class.java)
+                stasjonArray = gson.fromJson(Fuel.get(niluStasjonsdataPM10).awaitString(), Array<Stasjon>::class.java)
                 Log.d("TEST1: ", stasjonArray.size.toString())
 
-                areasArray = gson.fromJson(Fuel.get(lookupAreas).awaitString(), Array<Areas>::class.java)
+                areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
                 Log.d("TEST2: ", areasArray.size.toString())
+
+                /*val response =  gson.fromJson(Fuel.get(apiMetKommune).awaitString(), Array<MetApiKommune>::class.java)
+                Log.d("TEST3: ", response.size.toString())*/
 
                 for (dataAreas in areasArray) {
                     //val dataAreas = element
@@ -112,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                         if (dataAreas.area == dataStasjon.area) {
                             val temp = Adapter(dataAreas.area, dataStasjon.color)
                             adapterList.add(temp)
-                            break;
+                            break
                         }
                     }
                 }
