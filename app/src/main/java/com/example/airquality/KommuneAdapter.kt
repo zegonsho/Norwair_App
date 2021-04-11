@@ -27,7 +27,8 @@ class KommuneAdapter(private val adapterList: MutableList<Adapter>): RecyclerVie
         viewHolder.color.setBackgroundColor(Color.parseColor("#${adapterList[pos].fargekode}"))
 
         viewHolder.cardView.setOnClickListener {
-            val intent = Intent(it.context, CardViewClickActivity::class.java)
+            valgtKommune = adapterList[pos]
+            val intent = Intent(it.context, StatisticsActivity::class.java)
             it.context.startActivity(intent)
         }
     }

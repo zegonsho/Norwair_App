@@ -15,6 +15,10 @@ import kotlinx.coroutines.runBlocking
 //API
 data class Areas(val zone: String?, val municipality: String?, val area: String?, val description: String?)
 
+//Api
+data class Aqis(val index: Number?, val fromValue: Number?, val toValue: Number?, val color: String?, val text: String?, val shortDescription: String?, val description: String?, val advice: String?)
+data class Description(val component: String?, val unit: String?, val aqis: List<Aqis>?)
+
 data class Stasjon(
     val id: Number?,
     val zone: String?,
@@ -37,11 +41,15 @@ data class Stasjon(
 
 //Main
 data class Adapter(val kommuneNavn: String?, val fargekode: String?)
+data class Statistics(val text: String?, val shortDescription: String?, val description: String?, val advice: String?)
+
 
 lateinit var stasjonArray: Array<Stasjon>
 lateinit var areasArray: Array<Areas>
 
 val adapterList = mutableListOf<Adapter>()
+lateinit var valgtKommune: Adapter
+
 
 class MainActivity : AppCompatActivity() {
 
