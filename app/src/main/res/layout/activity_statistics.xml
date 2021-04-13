@@ -8,29 +8,18 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
     />
 
-    <TextView
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barchart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:layout_alignTop="@+id/spinner"
-        android:layout_marginTop="50dp"
-        android:id="@+id/success"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Success!"
-        android:textSize="32sp"
-        android:layout_centerHorizontal="true"
-    />
+        android:layout_marginTop="100dp"
 
-    <TextView
-        android:id="@+id/by"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="By:"
-        android:textSize="32sp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/success"
-        android:layout_marginTop="50dp"
     />
 
     <TextView
@@ -40,17 +29,9 @@
         android:text="Description:"
         android:textSize="32sp"
         android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/by"
-        android:layout_marginTop="50dp"
-    />
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/piechart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignTop="@+id/description"
-
-    />
+        android:layout_alignTop="@+id/barchart"
+        android:layout_marginTop="500dp"
+        />
 
 
 </RelativeLayout>

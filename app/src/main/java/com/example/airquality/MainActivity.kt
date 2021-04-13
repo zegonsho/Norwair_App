@@ -53,6 +53,9 @@ lateinit var stasjonerValgtKommune: Array<StasjonerValgtKommune>
 
 //statistikk
 val stasjonsNavn = mutableListOf<String>()
+val aqisList = mutableListOf("CO", "NO", "NO2", "NOx", "O3", "PM1", "PM10", "PM2.5", "SO2")
+val url = "https://api.nilu.no/obs/utd?"
+val resultatAqis = mutableListOf<Luftkvalitet>()
 
 
 class MainActivity : AppCompatActivity() {
