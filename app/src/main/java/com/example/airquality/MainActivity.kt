@@ -2,11 +2,12 @@ package com.example.airquality
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.SearchView
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.kittinunf.fuel.Fuel
@@ -17,6 +18,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+    private val gson = Gson()
+    lateinit var recycle: RecyclerView
+    lateinit var stasjonArray: Array<Stasjon>
+    lateinit var areasArray: Array<Areas>
+    val adapterList = mutableListOf<Adapter>()
+    //NILU:
+    val niluStasjonsdataPM10 = "https://api.nilu.no/aq/utd?&components=pm10"
+    val niluLookupAreas = "https://api.nilu.no/lookup/areas"
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -24,49 +34,35 @@ class MainActivity : AppCompatActivity() {
         val gson = Gson()
         // ENTIRE COROUTINESCOPE IS JUST A PLACEHOLDER (THE CODE WON'T RUN THROUGH IT RIGHT NOW)
         CoroutineScope(Dispatchers.IO).launch {
+            Log.d("first: ", "PASSED")
             try {
-                val airQualityList = gson.fromJson(
-                        Fuel.get(
-                                "https://api.met.no/weatherapi/airqualityforecast/0.1/swagger.json"
-                        ).awaitString(), AirQualityData::class.java
-                )
                 // Create recyclerview and adapter
-                runOnUiThread {
-                    var adapter = DataAdapter(airQualityList.data)
-                    val recyclerView: RecyclerView = findViewById(R.id.recycle)
-                    recyclerView.adapter = adapter
-                    recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-                    var viewHolder = adapter.createViewHolder(recyclerView, airQualityList.data.size)
-                    // Fills the recyclerview
-                    for(i in airQualityList.data){
-                        adapter.bindViewHolder(viewHolder, airQualityList.data.indexOf(i))
+                stasjonArray = gson.fromJson(Fuel.get(niluStasjonsdataPM10).awaitString(), Array<Stasjon>::class.java)
+                Log.d("TEST1: ", stasjonArray.size.toString())
+
+                areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
+                Log.d("TEST2: ", areasArray.size.toString())
+
+                for (dataAreas in areasArray) {
+                    for (dataStasjon in stasjonArray) {
+                        if (dataAreas.area == dataStasjon.area) {
+                            val temp = Adapter(dataAreas.area, dataStasjon.color)
+                            adapterList.add(temp)
+                            break
+                        }
                     }
                 }
-            } catch (exception: Exception){
-                println("A network request exception was thrown: ${exception.message}")
+            } catch (e: Exception) {
+                Log.e("Error ", e.message.toString())
             }
         }
-        // Placeholder county list
-        var countyList = mutableListOf<Data>()
-        countyList.add(Data("Oslo"))
-        countyList.add(Data("Rogaland"))
-        countyList.add(Data("Møre og Romsdal"))
-        countyList.add(Data("Nordaland"))
-        countyList.add(Data("Viken"))
-        countyList.add(Data("Innlandet"))
-        countyList.add(Data("Vestfold og Telemark"))
-        countyList.add(Data("Agder"))
-        countyList.add(Data("Vestland"))
-        countyList.add(Data("Trøndelag"))
-        countyList.add(Data("Troms og Finnmark"))
-        val testList = AirQualityData(countyList)
         // Create searchview and listener
         val searchView: SearchView = findViewById(R.id.search)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             // When query is submitted
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()){
-                    searchCounty(query, testList)
+                    searchCounty(query, adapterList)
                 }
                 val keyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 keyboard.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
@@ -77,6 +73,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
         })
+
         // Button to map
         val buttonMap: Button = findViewById(R.id.button_map)
         buttonMap.setOnClickListener{
@@ -91,25 +88,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
     // Search function
-    private fun searchCounty(query: String, testList: AirQualityData) {
-        var tempList = mutableListOf<Data>()
+    private fun searchCounty(query: String, list: MutableList<Adapter>) {
+        var searchList = mutableListOf<Adapter>()
         // creates a list of counties which contain the query
-        for(i in testList.data){
-            if(i.PLACEHOLDER.contains(query, ignoreCase = true)){
-                tempList.add(Data(i.PLACEHOLDER))
+        for (i in list) {
+            if (i.kommuneNavn!!.contains(query, ignoreCase = true)) {
+                searchList.add(Adapter(i.kommuneNavn, i.fargekode))
             }
         }
-        val searchList = AirQualityData(tempList)
         // creates the recyclerview
         runOnUiThread {
-            var adapter = DataAdapter(searchList.data)
+            var adapter = KommuneAdapter(searchList)
             val recyclerView: RecyclerView = findViewById(R.id.recycle)
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-            var viewHolder = adapter.createViewHolder(recyclerView, searchList.data.size)
+            var viewHolder = adapter.createViewHolder(recyclerView, searchList.size)
             // Fills the recyclerview
-            for(i in searchList.data){
-                adapter.bindViewHolder(viewHolder, searchList.data.indexOf(i))
+            for (i in searchList) {
+                adapter.bindViewHolder(viewHolder, searchList.indexOf(i))
             }
         }
     }

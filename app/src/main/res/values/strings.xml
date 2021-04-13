@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">AirQuality</string>
-    <string name="search_hint">PLACEHOLDER</string>
+    <string name="search_hint">Search County</string>
 </resources>
