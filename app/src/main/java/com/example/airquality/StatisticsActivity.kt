@@ -79,10 +79,11 @@ class StatisticsActivity : AppCompatActivity() {
             } catch (e : Exception) {
                 Log.d("Error ", e.toString())
             }
-
-            var aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, stasjonsNavn)
-            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinnerlanguages.adapter = aa
         }
+
+        spinnerlanguages = findViewById(R.id.spinner)
+        var aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, stasjonsNavn)
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerlanguages.adapter = aa
     }
 }
