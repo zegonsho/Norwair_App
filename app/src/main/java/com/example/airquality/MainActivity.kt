@@ -51,6 +51,10 @@ val adapterList = mutableListOf<Adapter>()
 lateinit var valgtKommune: Adapter
 lateinit var stasjonerValgtKommune: Array<StasjonerValgtKommune>
 
+//statistikk
+val stasjonsNavn = mutableListOf<String>()
+
+
 class MainActivity : AppCompatActivity() {
 
     private val gson = Gson()

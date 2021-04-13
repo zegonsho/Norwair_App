@@ -3,6 +3,8 @@ package com.example.airquality
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
@@ -12,7 +14,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.runBlocking
 import java.lang.Exception
 
-class StatisticsActivity : AppCompatActivity() {
+class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +37,6 @@ class StatisticsActivity : AppCompatActivity() {
         //Spinner
         lateinit var stasjonsNavn: MutableList<String>
         val lookupStations = "https://api.nilu.no/lookup/stations?area="
-        lateinit var spinnerlanguages: Spinner
 
         runBlocking {
             try {
@@ -81,9 +82,18 @@ class StatisticsActivity : AppCompatActivity() {
             }
         }
 
-        spinnerlanguages = findViewById(R.id.spinner)
+        var spinnerlanguages: Spinner = findViewById(R.id.spinner)
+        spinnerlanguages.onItemSelectedListener = this
         var aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, stasjonsNavn)
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerlanguages.adapter = aa
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        Log.d("name", stasjonsNavn[position])
     }
 }
