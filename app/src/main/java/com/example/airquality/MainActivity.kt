@@ -18,15 +18,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-    private val gson = Gson()
-    lateinit var recycle: RecyclerView
     lateinit var stasjonArray: Array<Stasjon>
     lateinit var areasArray: Array<Areas>
     val adapterList = mutableListOf<Adapter>()
     //NILU:
     val niluStasjonsdataPM10 = "https://api.nilu.no/aq/utd?&components=pm10"
     val niluLookupAreas = "https://api.nilu.no/lookup/areas"
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
