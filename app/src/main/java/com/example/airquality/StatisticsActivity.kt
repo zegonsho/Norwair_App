@@ -3,6 +3,8 @@ package com.example.airquality
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.coroutines.awaitString
@@ -19,6 +21,7 @@ class StatisticsActivity : AppCompatActivity() {
         lateinit var statisticsArray: Array<Statistics>
         lateinit var descriptionArray: Array<Statistics>
         val lookupAqis = "https://api.nilu.no/lookup/aqis?component="
+        val lookupStasjoner = "https://api.nilu.no/lookup/stations?area="
         val description: TextView = findViewById(R.id.description)
         val by: TextView = findViewById(R.id.by)
 
@@ -28,7 +31,11 @@ class StatisticsActivity : AppCompatActivity() {
         //https://api.nilu.no/obs/utd?areas={kommune}&components={aqis}
         lateinit var valgtKommuneVerdier: Array<Stasjon>
         val url = "https://api.nilu.no/obs/utd?"
-        //val listeMedStasjonsdata = mutableListOf<BaseLuftkvalitet>()
+
+        //Spinner
+        lateinit var stasjonsNavn: MutableList<String>
+        val lookupStations = "https://api.nilu.no/lookup/stations?area="
+        lateinit var spinnerlanguages: Spinner
 
         runBlocking {
             try {
@@ -58,12 +65,24 @@ class StatisticsActivity : AppCompatActivity() {
                     }
                 }
 
-                //Log.d("resultatAqis", resultatAqis.size.toString())
+                stasjonerValgtKommune = Gson().fromJson(Fuel.get(lookupStations+ valgtKommune.kommuneNavn?.toLowerCase()).awaitString(), Array<StasjonerValgtKommune>::class.java)
+                valgtKommune.kommuneNavn?.toLowerCase()?.let { Log.d("hei   ", it) }
+                var size = stasjonerValgtKommune.size
+                stasjonsNavn = mutableListOf()
+                for (i in 0..stasjonerValgtKommune.size) {
+                    stasjonsNavn.add(stasjonerValgtKommune[i].station.toString())
+                }
+
+
 
 
             } catch (e : Exception) {
                 Log.d("Error ", e.toString())
             }
+
+            var aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, stasjonsNavn)
+            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerlanguages.adapter = aa
         }
     }
 }

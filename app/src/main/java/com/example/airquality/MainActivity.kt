@@ -37,6 +37,8 @@ data class Stasjon(
     val color: String?,
     val isValid: Boolean?)
 
+data class StasjonerValgtKommune(val id: Number?, val zone: String?, val municipality: String?, val area: String?, val station: String?, val type: String?, val eoi: String?, val latitude: Number?, val longitude: Number?, val owner: String?, val status: String?, val description: String?, val firstMeasurment: String?, val lastMeasurment: String?, val components: String?, val isVisible: Boolean?)
+
 //Main
 data class Adapter(val kommuneNavn: String?, val fargekode: String?)
 //data class Statistics(val text: String?, val shortDescription: String?, val description: String?, val advice: String?)
@@ -47,7 +49,7 @@ lateinit var areasArray: Array<Areas>
 
 val adapterList = mutableListOf<Adapter>()
 lateinit var valgtKommune: Adapter
-
+lateinit var stasjonerValgtKommune: Array<StasjonerValgtKommune>
 
 class MainActivity : AppCompatActivity() {
 
