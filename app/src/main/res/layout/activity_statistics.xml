@@ -16,22 +16,49 @@
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barchart"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:layout_alignTop="@+id/spinner"
         android:layout_marginTop="100dp"
 
     />
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description:"
-        android:textSize="32sp"
-        android:layout_centerHorizontal="true"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_alignTop="@+id/barchart"
-        android:layout_marginTop="500dp"
-        />
+        android:layout_marginTop="220dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp" >
+
+            <TextView
+                android:id="@+id/anbefalinger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Anebafalinger:"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:backgroundTint="@color/cardview_light_background"
+                android:layout_centerHorizontal="true"
+            />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@+id/anbefalinger"
+                android:layout_marginTop="100dp"
+                android:text="Hei"
+                android:textSize="16sp"
+                />
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>
