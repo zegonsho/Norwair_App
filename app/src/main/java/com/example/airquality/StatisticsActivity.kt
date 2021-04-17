@@ -4,6 +4,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.*
 import com.github.kittinunf.fuel.Fuel
@@ -37,9 +38,8 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
 
         runBlocking {
             try {
+                //Baserer anbefaling som vi gir ved valgt kommune på pm10 verdiene som er der
                 descriptionArray = Gson().fromJson(Fuel.get(lookupAqis+"pm10").awaitString(), Array<Statistics>::class.java)
-                //Log.d("TAG", "onCreate: $descriptionArray")
-                valgtKommune.kommuneNavn?.let { Log.d("valgt Kommune", it) }
 
                 for (x in descriptionArray) {
                     for (y in x.aqis!!) {
@@ -51,16 +51,9 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 }
 
                 stasjonerValgtKommune = Gson().fromJson(Fuel.get(lookupStations+ valgtKommune.kommuneNavn?.toLowerCase()).awaitString(), Array<StasjonerValgtKommune>::class.java)
-                //valgtKommune.kommuneNavn?.toLowerCase()?.let { Log.d("hei   ", it) }
 
-                var index = 0
+                stasjonsNavn.add("Generelt")
                 for (element in stasjonerValgtKommune) {
-                    if (index == 0) {
-                        stasjonsNavn.add("Generelt")
-                        index++
-
-                    }
-
                     stasjonsNavn.add(element.station.toString())
                 }
 
@@ -80,11 +73,11 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             }
         }
 
-        val spinnerlanguages: Spinner = findViewById(R.id.spinner)
-        spinnerlanguages.onItemSelectedListener = this
+        val spinner: Spinner = findViewById(R.id.spinner)
+        spinner.onItemSelectedListener = this
         val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, stasjonsNavn)
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerlanguages.adapter = aa
+        spinner.adapter = aa
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -93,39 +86,39 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val toast = Toast.makeText(applicationContext, "Klikk på bar charten for å oppdatere den",Toast.LENGTH_LONG)
+        toast.setGravity(Gravity.CENTER, 0,0)
         toast.show()
 
         val barChart: BarChart = findViewById(R.id.barchart)
 
+        //Dersom "Generelt" velges tas all data tilgjengelig fra alle målestasjonene og fylles opp på gitte kommune
         if (stasjonsNavn[position] == "Generelt") {
 
             for (data in resultatAqis) {
                 for (i in aqisList.indices) {
                     if (data.verdinavn.toString() == aqisList[i]) {
-                        barEntries[i].`val` = data.verdi?.toFloat() ?: 0f
-                        break
+                        if (barEntries[i].`val` <= data.verdi?.toFloat() ?: 0f) {
+                            barEntries[i].`val` = data.verdi?.toFloat() ?: 0f
+                            break
+                        }
                     }
                 }
             }
         } else {
 
-            //Log.d("name1", stasjonsNavn[position])
             try {
-
+                //Resetter alle målingene til 0
                 for (i in aqisList.indices) {
                     barEntries[i].`val` = 0f
                 }
 
-
+                //Fyller opp bar chart med målingene fra valgt stasjon fra spinner
                 for (data in resultatAqis) {
 
                     if (data.stasjon.toString() == (stasjonsNavn[position])) {
                         for (i in aqisList.indices) {
                             if (data.verdinavn.toString() == aqisList[i]) {
                                 barEntries[i].`val` = data.verdi?.toFloat() ?: 0f
-                                //Log.d("verdi stasjon", data.stasjon.toString())
-                                //Log.d("verdinavn", data.verdinavn.toString())
-                                //Log.d("verdi", data.verdi.toString())
                                 break
                             }
                         }
@@ -136,7 +129,8 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             }
         }
 
-        val barDataSet = BarDataSet(barEntries, "Levels")
+        //Lager bar charten her
+        val barDataSet = BarDataSet(barEntries, "Values")
         barDataSet.valueTextColor = Color.BLACK
 
         barDataSet.setColors(ColorTemplate.LIBERTY_COLORS)
@@ -145,6 +139,5 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         data.setValueTextColor(Color.BLACK)
         barChart.data = data
         barChart.xAxis.setLabelsToSkip(0)
-
     }
 }

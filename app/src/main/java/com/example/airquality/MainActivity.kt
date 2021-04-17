@@ -37,10 +37,8 @@ class MainActivity : AppCompatActivity() {
             Log.d("first: ", "PASSED")
             try {
                 stasjonArray = gson.fromJson(Fuel.get(niluStasjonsdataPM10).awaitString(), Array<Stasjon>::class.java)
-                //Log.d("TEST1: ", stasjonArray.size.toString())
 
                 areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
-                //Log.d("TEST2: ", areasArray.size.toString())
 
                 var vaer: String
                 var vaerBeskrivelse: String
@@ -50,16 +48,12 @@ class MainActivity : AppCompatActivity() {
                         if (dataAreas.area == dataStasjon.area) {
                             try {
                                 val tempRespone = gson.fromJson(Fuel.get(apiProxyIN2000 + "lat=${dataStasjon.latitude.toString()}" + "&lon=${dataStasjon.longitude.toString()}").awaitString(), Base::class.java)
-                                //tempRespone.properties?.timeseries?.get(0)?.toString()?.let { Log.d("temp", it) }
-                                //Log.d("time", (tempRespone.properties?.timeseries?.get(0)).toString())
 
                                 val list = tempRespone.properties?.timeseries
-                                //Log.d("list", list.toString())
                                 vaer = list?.get(0)?.data?.instant?.details?.air_temperature.toString()
                                 vaerBeskrivelse = list?.get(0)?.data?.next_1_hours?.summary?.symbol_code.toString()
 
                             } catch (e: Exception) {
-                                //Log.d("Error vær", e.message.toString())
                                 vaer = "Ingen data"
                                 vaerBeskrivelse = "Ingen data"
                             }
