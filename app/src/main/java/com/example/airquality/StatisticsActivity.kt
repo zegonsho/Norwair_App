@@ -86,7 +86,7 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val toast = Toast.makeText(applicationContext, "Klikk på bar charten for å oppdatere den",Toast.LENGTH_LONG)
-        toast.setGravity(Gravity.CENTER, 0,0)
+        //toast.setGravity(Gravity.CENTER, 0,0)
         toast.show()
 
         val barChart: BarChart = findViewById(R.id.barchart)
