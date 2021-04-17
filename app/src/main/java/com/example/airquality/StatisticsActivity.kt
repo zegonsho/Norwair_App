@@ -25,8 +25,6 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
 
-
-
         lateinit var descriptionArray: Array<Statistics>
         val lookupAqis = "https://api.nilu.no/lookup/aqis?component="
         val description: TextView = findViewById(R.id.description)
@@ -40,7 +38,7 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         runBlocking {
             try {
                 descriptionArray = Gson().fromJson(Fuel.get(lookupAqis+"pm10").awaitString(), Array<Statistics>::class.java)
-                Log.d("TAG", "onCreate: $descriptionArray")
+                //Log.d("TAG", "onCreate: $descriptionArray")
                 valgtKommune.kommuneNavn?.let { Log.d("valgt Kommune", it) }
 
                 for (x in descriptionArray) {
@@ -53,7 +51,7 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 }
 
                 stasjonerValgtKommune = Gson().fromJson(Fuel.get(lookupStations+ valgtKommune.kommuneNavn?.toLowerCase()).awaitString(), Array<StasjonerValgtKommune>::class.java)
-                valgtKommune.kommuneNavn?.toLowerCase()?.let { Log.d("hei   ", it) }
+                //valgtKommune.kommuneNavn?.toLowerCase()?.let { Log.d("hei   ", it) }
 
                 var index = 0
                 for (element in stasjonerValgtKommune) {
@@ -61,9 +59,9 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                         stasjonsNavn.add("Generelt")
                         index++
 
-                    } else {
-                        stasjonsNavn.add(element.station.toString())
                     }
+
+                    stasjonsNavn.add(element.station.toString())
                 }
 
                 for ((counter, value) in aqisList.withIndex()) {
@@ -94,7 +92,7 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val toast = Toast.makeText(applicationContext, "Toast",Toast.LENGTH_LONG)
+        val toast = Toast.makeText(applicationContext, "Klikk på bar charten for å oppdatere den",Toast.LENGTH_LONG)
         toast.show()
 
         val barChart: BarChart = findViewById(R.id.barchart)
@@ -125,9 +123,9 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                         for (i in aqisList.indices) {
                             if (data.verdinavn.toString() == aqisList[i]) {
                                 barEntries[i].`val` = data.verdi?.toFloat() ?: 0f
-                                Log.d("verdi stasjon", data.stasjon.toString())
-                                Log.d("verdinavn", data.verdinavn.toString())
-                                Log.d("verdi", data.verdi.toString())
+                                //Log.d("verdi stasjon", data.stasjon.toString())
+                                //Log.d("verdinavn", data.verdinavn.toString())
+                                //Log.d("verdi", data.verdi.toString())
                                 break
                             }
                         }

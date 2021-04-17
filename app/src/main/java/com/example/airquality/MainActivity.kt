@@ -15,18 +15,8 @@ import kotlinx.coroutines.runBlocking
 lateinit var stasjonArray: Array<Stasjon>
 lateinit var areasArray: Array<Areas>
 
-val adapterList = mutableListOf<Adapter>()
 lateinit var valgtKommune: Adapter
 lateinit var stasjonerValgtKommune: Array<StasjonerValgtKommune>
-
-//statistikk
-val stasjonsNavn = mutableListOf<String>()
-val aqisList = mutableListOf("CO", "NO", "NO2", "NOx", "O3", "PM1", "PM10", "PM2.5", "SO2")
-const val url = "https://api.nilu.no/obs/utd?"
-val resultatAqis = mutableListOf<Luftkvalitet>()
-val xValues = ArrayList<String>()
-val barEntries = ArrayList<BarEntry>()
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,8 +24,10 @@ class MainActivity : AppCompatActivity() {
     private val gson = Gson()
     lateinit var recycle: RecyclerView
     //NILU:
-    val niluStasjonsdataPM10 = "https://api.nilu.no/aq/utd?&components=pm10"
-    val niluLookupAreas = "https://api.nilu.no/lookup/areas"
+    private val niluStasjonsdataPM10 = "https://api.nilu.no/aq/utd?&components=pm10"
+    private val niluLookupAreas = "https://api.nilu.no/lookup/areas"
+    //https://in2000-apiproxy.ifi.uio.no/weatherapi/nowcast/2.0/complete?lat={}&lon={}
+    private val apiProxyIN2000 = "https://in2000-apiproxy.ifi.uio.no/weatherapi/nowcast/2.0/complete?"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,15 +37,34 @@ class MainActivity : AppCompatActivity() {
             Log.d("first: ", "PASSED")
             try {
                 stasjonArray = gson.fromJson(Fuel.get(niluStasjonsdataPM10).awaitString(), Array<Stasjon>::class.java)
-                Log.d("TEST1: ", stasjonArray.size.toString())
+                //Log.d("TEST1: ", stasjonArray.size.toString())
 
                 areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
-                Log.d("TEST2: ", areasArray.size.toString())
+                //Log.d("TEST2: ", areasArray.size.toString())
+
+                var vaer: String
+                var vaerBeskrivelse: String
 
                 for (dataAreas in areasArray) {
                     for (dataStasjon in stasjonArray) {
                         if (dataAreas.area == dataStasjon.area) {
-                            val temp = Adapter(dataAreas.area, dataStasjon.color)
+                            try {
+                                val tempRespone = gson.fromJson(Fuel.get(apiProxyIN2000 + "lat=${dataStasjon.latitude.toString()}" + "&lon=${dataStasjon.longitude.toString()}").awaitString(), Base::class.java)
+                                //tempRespone.properties?.timeseries?.get(0)?.toString()?.let { Log.d("temp", it) }
+                                //Log.d("time", (tempRespone.properties?.timeseries?.get(0)).toString())
+
+                                val list = tempRespone.properties?.timeseries
+                                //Log.d("list", list.toString())
+                                vaer = list?.get(0)?.data?.instant?.details?.air_temperature.toString()
+                                vaerBeskrivelse = list?.get(0)?.data?.next_1_hours?.summary?.symbol_code.toString()
+
+                            } catch (e: Exception) {
+                                //Log.d("Error vær", e.message.toString())
+                                vaer = "Ingen data"
+                                vaerBeskrivelse = "Ingen data"
+                            }
+
+                            val temp = Adapter(dataAreas.area, dataStasjon.color, vaer, vaerBeskrivelse)
                             adapterList.add(temp)
                             break
                         }
@@ -61,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             catch (e: Exception) {
-                Log.e("Error ", e.message.toString())
+                Log.e("Error Adapterlist", e.message.toString())
             }
         }
 

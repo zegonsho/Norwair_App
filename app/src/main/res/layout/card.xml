@@ -25,12 +25,33 @@
 
             <TextView
                 android:id="@+id/PLACEHOLDER"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="16dp"
-                android:textAlignment="center"
                 android:textSize="32sp"
-                />
+                android:text="check"
+            />
+
+            <TextView
+                android:id="@+id/weather"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/PLACEHOLDER"
+                android:layout_alignParentEnd="true"
+                android:textSize="24sp"
+                android:text="weather"
+            />
+
+            <TextView
+                android:id="@+id/weatherValue"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/weather"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentEnd="true"
+                android:textSize="16sp"
+                android:text="value"
+            />
 
             <View
                 android:id="@+id/color"
