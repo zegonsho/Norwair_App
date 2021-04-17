@@ -28,7 +28,8 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
 
         lateinit var descriptionArray: Array<Statistics>
         val lookupAqis = "https://api.nilu.no/lookup/aqis?component="
-        val description: TextView = findViewById(R.id.description)
+        val beskrivelse: TextView = findViewById(R.id.kortBeskrivelse)
+        val anbefaling: TextView = findViewById(R.id.anbefaling)
 
         //Bar Chart
         //https://api.nilu.no/obs/utd?areas={kommune}&components={aqis}
@@ -44,7 +45,8 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 for (x in descriptionArray) {
                     for (y in x.aqis!!) {
                         if (y.color.toString() == valgtKommune.fargekode) {
-                            description.text = y.advice
+                            beskrivelse.text = y.description
+                            anbefaling.text = y.advice
                             break
                         }
                     }
@@ -132,8 +134,9 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         //Lager bar charten her
         val barDataSet = BarDataSet(barEntries, "Values")
         barDataSet.valueTextColor = Color.BLACK
+        barDataSet.valueTextSize = 12f
 
-        barDataSet.setColors(ColorTemplate.LIBERTY_COLORS)
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
 
         val data = BarData(xValues, barDataSet)
         data.setValueTextColor(Color.BLACK)
