@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -13,11 +14,13 @@ import java.util.*
 
 class KommuneAdapter(private val adapterList: MutableList<Adapter>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>() {
     //private val dataList = kommuner
+    val favorittList = mutableListOf<Adapter>()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.PLACEHOLDER)
         var color: View = view.findViewById(R.id.color)
         var cardView: CardView = view.findViewById(R.id.cardView)
+        var favorittB: CheckBox = view.findViewById(R.id.favorittBoks)
     }
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.card, viewGroup, false)
@@ -36,6 +39,13 @@ class KommuneAdapter(private val adapterList: MutableList<Adapter>): RecyclerVie
 
         viewHolder.name.text = adapterList[pos].kommuneNavn
         viewHolder.color.setBackgroundColor(Color.parseColor("#${adapterList[pos].fargekode}"))
+
+
+        if(viewHolder.favorittB.isChecked){
+            favorittList.add(adapterList[pos])
+        } else {
+            favorittList.remove(adapterList[pos])
+        }
 
         viewHolder.cardView.setOnClickListener {
             val intent = Intent(it.context, CardViewClickActivity::class.java)

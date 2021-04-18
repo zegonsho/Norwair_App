@@ -1,8 +1,12 @@
 package com.example.airquality
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,10 +51,9 @@ data class Adapter(val kommuneNavn: String?, val fargekode: String?)
 
 lateinit var stasjonArray: Array<Stasjon>
 lateinit var areasArray: Array<Areas>
-
 val adapterList = mutableListOf<Adapter>()
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     private val kommuneString = mutableListOf<String>()
     private val kommuneList = mutableListOf<Kommuner>()
@@ -63,11 +66,10 @@ class MainActivity : AppCompatActivity() {
     val apiMetStasjon = "https://api.met.no/weatherapi/airqualityforecast/0.1/stations"
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         /*// Create searchview and listener
         val searchView: SearchView = findViewById(R.id.search)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -150,6 +152,7 @@ class MainActivity : AppCompatActivity() {
         recycle = findViewById(R.id.recycle)
         recycle.adapter = KommuneAdapter(adapterList)
         recycle.layoutManager = LinearLayoutManager(this)
+
     }
 
 
@@ -176,4 +179,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }*/
+
 }
