@@ -25,11 +25,33 @@
 
             <TextView
                 android:id="@+id/PLACEHOLDER"
+
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="16dp"
                 android:textAlignment="center"
                 android:textSize="32sp" />
+
+            <TextView
+                android:id="@+id/weather"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/PLACEHOLDER"
+                android:layout_alignParentEnd="true"
+                android:textSize="24sp"
+                android:text="weather"
+            />
+
+            <TextView
+                android:id="@+id/weatherValue"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/weather"
+                android:layout_marginTop="40dp"
+                android:layout_alignParentEnd="true"
+                android:textSize="16sp"
+                android:text="value"
+            />
 
             <View
                 android:id="@+id/color"
@@ -39,15 +61,14 @@
             />
 
             <CheckBox
+                android:id="@+id/favorittBoks"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:id="@+id/favorittBoks"
                 android:layout_alignBottom="@+id/PLACEHOLDER"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="7dp"
+                android:layout_marginEnd="87dp"
+                android:layout_marginBottom="5dp"
                 android:button="@drawable/selector_favoritt_item" />
-
 
         </RelativeLayout>
 
@@ -62,5 +83,5 @@
         android:textAlignment="center"
         android:textSize="32sp"
         />-->
-    
+
 </RelativeLayout>
