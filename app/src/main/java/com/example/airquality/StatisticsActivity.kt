@@ -144,7 +144,7 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         barDataSet.valueTextColor = Color.BLACK
         barDataSet.valueTextSize = 12f
 
-        barDataSet.setColors(ColorTemplate.LIBERTY_COLORS)
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
 
         val data = BarData(xValues, barDataSet)
         data.setValueTextColor(Color.BLACK)
