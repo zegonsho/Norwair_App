@@ -29,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Kommune"
-                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textSize="32sp"
             />
 
             <com.github.mikephil.charting.charts.BarChart
@@ -45,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Risikoverdier:"
+                android:textColor="@color/black"
                 android:layout_centerHorizontal="true"
                 android:layout_alignTop="@+id/barchart"
                 android:layout_marginTop="220dp"
@@ -698,7 +700,8 @@
                         android:id="@+id/anbefalinger"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Anbafalinger:"
+                        android:text="Anbefalinger:"
+                        android:textColor="@color/black"
                         android:gravity="center"
                         android:textSize="24sp"
                         android:layout_centerHorizontal="true"
@@ -734,6 +737,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kommunens vurdering alt i alt:"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:layout_alignTop="@+id/cardview"
                 android:layout_marginTop="175dp"
