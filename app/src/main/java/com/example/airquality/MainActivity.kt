@@ -16,7 +16,6 @@ lateinit var stasjonArray: Array<Stasjon>
 lateinit var areasArray: Array<Areas>
 
 lateinit var valgtKommune: Adapter
-lateinit var stasjonerValgtKommune: Array<StasjonerValgtKommune>
 
 
 class MainActivity : AppCompatActivity() {
@@ -50,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                                 val tempRespone = gson.fromJson(Fuel.get(apiProxyIN2000 + "lat=${dataStasjon.latitude.toString()}" + "&lon=${dataStasjon.longitude.toString()}").awaitString(), Base::class.java)
 
                                 val list = tempRespone.properties?.timeseries
-                                vaer = list?.get(0)?.data?.instant?.details?.air_temperature.toString()
+                                vaer = list?.get(0)?.data?.instant?.details?.air_temperature.toString() + "°C"
                                 vaerBeskrivelse = list?.get(0)?.data?.next_1_hours?.summary?.symbol_code.toString()
 
                             } catch (e: Exception) {

@@ -3,6 +3,7 @@ package com.example.airquality
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -30,6 +31,16 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         val lookupAqis = "https://api.nilu.no/lookup/aqis?component="
         val beskrivelse: TextView = findViewById(R.id.kortBeskrivelse)
         val anbefaling: TextView = findViewById(R.id.anbefaling)
+        val tittel: TextView = findViewById(R.id.valgtKommuneStatistikk)
+        val totalVurdering: View = findViewById(R.id.totalVurdering)
+
+        tittel.text = valgtKommune.kommuneNavn
+        totalVurdering.setBackgroundColor(Color.parseColor("#" + valgtKommune.fargekode.toString()))
+        xValues = ArrayList()
+        barEntries = ArrayList()
+        resultatAqis = mutableListOf()
+        stasjonsNavn = mutableListOf()
+        lateinit var stasjonerValgtKommune: Array<StasjonerValgtKommune>
 
         //Bar Chart
         //https://api.nilu.no/obs/utd?areas={kommune}&components={aqis}
@@ -54,7 +65,7 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
 
                 stasjonerValgtKommune = Gson().fromJson(Fuel.get(lookupStations+ valgtKommune.kommuneNavn?.toLowerCase()).awaitString(), Array<StasjonerValgtKommune>::class.java)
 
-                stasjonsNavn.add("Generelt")
+                stasjonsNavn.add("Høyeste målinger registrert")
                 for (element in stasjonerValgtKommune) {
                     stasjonsNavn.add(element.station.toString())
                 }
@@ -87,14 +98,11 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val toast = Toast.makeText(applicationContext, "Klikk på bar charten for å oppdatere den",Toast.LENGTH_LONG)
-        //toast.setGravity(Gravity.CENTER, 0,0)
-        toast.show()
 
         val barChart: BarChart = findViewById(R.id.barchart)
 
         //Dersom "Generelt" velges tas all data tilgjengelig fra alle målestasjonene og fylles opp på gitte kommune
-        if (stasjonsNavn[position] == "Generelt") {
+        if (stasjonsNavn[position] == "Høyeste målinger registrert") {
 
             for (data in resultatAqis) {
                 for (i in aqisList.indices) {
@@ -136,11 +144,12 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         barDataSet.valueTextColor = Color.BLACK
         barDataSet.valueTextSize = 12f
 
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
+        barDataSet.setColors(ColorTemplate.LIBERTY_COLORS)
 
         val data = BarData(xValues, barDataSet)
         data.setValueTextColor(Color.BLACK)
         barChart.data = data
         barChart.xAxis.setLabelsToSkip(0)
+        barChart.animateX(100)
     }
 }
