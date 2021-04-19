@@ -8,7 +8,6 @@ import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.kittinunf.fuel.Fuel
@@ -18,34 +17,46 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+lateinit var valgtKommune: Adapter
+
 class MainActivity : AppCompatActivity() {
     lateinit var stasjonArray: Array<Stasjon>
     lateinit var areasArray: Array<Areas>
-    val adapterList = mutableListOf<Adapter>()
+    lateinit var recycle: RecyclerView
+    var adapterList = mutableListOf<Adapter>()
     //NILU:
-    val niluStasjonsdataPM10 = "https://api.nilu.no/aq/utd?&components=pm10"
-    val niluLookupAreas = "https://api.nilu.no/lookup/areas"
+    private val niluStasjonsdataPM10 = "https://api.nilu.no/aq/utd?&components=pm10"
+    private val niluLookupAreas = "https://api.nilu.no/lookup/areas"
+    private val apiProxyIN2000 = "https://in2000-apiproxy.ifi.uio.no/weatherapi/nowcast/2.0/complete?"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         // Create air quality data
         val gson = Gson()
-        // ENTIRE COROUTINESCOPE IS JUST A PLACEHOLDER (THE CODE WON'T RUN THROUGH IT RIGHT NOW)
         CoroutineScope(Dispatchers.IO).launch {
             Log.d("first: ", "PASSED")
             try {
                 // Create recyclerview and adapter
                 stasjonArray = gson.fromJson(Fuel.get(niluStasjonsdataPM10).awaitString(), Array<Stasjon>::class.java)
                 Log.d("TEST1: ", stasjonArray.size.toString())
-
                 areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
                 Log.d("TEST2: ", areasArray.size.toString())
-
+                var vaer: String
+                var vaerBeskrivelse: String
                 for (dataAreas in areasArray) {
                     for (dataStasjon in stasjonArray) {
                         if (dataAreas.area == dataStasjon.area) {
-                            val temp = Adapter(dataAreas.area, dataStasjon.color, null, null)
+                            try {
+                                val tempRespone = gson.fromJson(Fuel.get(apiProxyIN2000 + "lat=${dataStasjon.latitude.toString()}" + "&lon=${dataStasjon.longitude.toString()}").awaitString(), Base::class.java)
+                                val list = tempRespone.properties?.timeseries
+                                vaer = list?.get(0)?.data?.instant?.details?.air_temperature.toString() + "°C"
+                                vaerBeskrivelse = list?.get(0)?.data?.next_1_hours?.summary?.symbol_code.toString()
+                            } catch (e: Exception) {
+                                vaer = "Ingen data"
+                                vaerBeskrivelse = "Ingen data"
+                            }
+                            val temp = Adapter(dataAreas.area, dataStasjon.color, vaer, vaerBeskrivelse)
                             adapterList.add(temp)
                             break
                         }

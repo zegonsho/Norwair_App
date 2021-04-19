@@ -14,7 +14,9 @@ class KommuneAdapter(private val adapterList: MutableList<Adapter>): RecyclerVie
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.PLACEHOLDER)
         var color: View = view.findViewById(R.id.color)
-        var cardView: CardView = view.findViewById(R.id.card)
+        var cardView: CardView = view.findViewById(R.id.cardView)
+        var weather: TextView = view.findViewById(R.id.weather)
+        var weatherValue: TextView = view.findViewById(R.id.weatherValue)
     }
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.card, viewGroup, false)
@@ -22,11 +24,14 @@ class KommuneAdapter(private val adapterList: MutableList<Adapter>): RecyclerVie
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, pos: Int) {
 
-        viewHolder.name.text = adapterList[pos].kommuneNavn
-        viewHolder.color.setBackgroundColor(Color.parseColor("#${adapterList[pos].fargekode}"))
+        viewHolder.name.text = com.example.airquality.adapterList[pos].kommuneNavn
+        viewHolder.color.setBackgroundColor(Color.parseColor("#${com.example.airquality.adapterList[pos].fargekode}"))
+        viewHolder.weather.text = com.example.airquality.adapterList[pos].vaer.toString()
+        viewHolder.weatherValue.text = com.example.airquality.adapterList[pos].beskrivelse.toString()
 
         viewHolder.cardView.setOnClickListener {
-            val intent = Intent(it.context, CardViewClickActivity::class.java)
+            valgtKommune = com.example.airquality.adapterList[pos]
+            val intent = Intent(it.context, StatisticsActivity::class.java)
             it.context.startActivity(intent)
         }
     }
