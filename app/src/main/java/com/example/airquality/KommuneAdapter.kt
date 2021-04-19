@@ -23,7 +23,6 @@ class KommuneAdapter(private val adapterList: MutableList<Adapter>): RecyclerVie
         return ViewHolder(view)
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, pos: Int) {
-
         viewHolder.name.text = com.example.airquality.adapterList[pos].kommuneNavn
         viewHolder.color.setBackgroundColor(Color.parseColor("#${com.example.airquality.adapterList[pos].fargekode}"))
         viewHolder.weather.text = com.example.airquality.adapterList[pos].vaer.toString()

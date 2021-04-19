@@ -12,18 +12,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.coroutines.awaitString
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
+//API
 lateinit var valgtKommune: Adapter
 
 class MainActivity : AppCompatActivity() {
     lateinit var stasjonArray: Array<Stasjon>
     lateinit var areasArray: Array<Areas>
-    lateinit var recycle: RecyclerView
-    var adapterList = mutableListOf<Adapter>()
     //NILU:
     private val niluStasjonsdataPM10 = "https://api.nilu.no/aq/utd?&components=pm10"
     private val niluLookupAreas = "https://api.nilu.no/lookup/areas"
@@ -35,6 +36,26 @@ class MainActivity : AppCompatActivity() {
         // Create air quality data
         val gson = Gson()
         CoroutineScope(Dispatchers.IO).launch {
+        var bottomNavigation : BottomNavigationView = findViewById(R.id.bottom_navigation) //might have to be initalized before
+        val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            //TODO: implement fragement pages
+            when (item.itemId) {
+                R.id.navigation_search -> {
+                    //openFragment(HomeFragment.newInstance("", ""))
+                    //return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_fav -> {
+                    //openFragment(SmsFragment.newInstance("", ""))
+                    //return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_info -> {
+                    //openFragment(NotificationFragment.newInstance("", ""))
+                    //return@OnNavigationItemSelectedListener true
+                }
+            }
+            false
+        }
+
             Log.d("first: ", "PASSED")
             try {
                 // Create recyclerview and adapter
