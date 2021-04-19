@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 class KommuneAdapter(private val adapterList: MutableList<Adapter>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var name: TextView = view.findViewById(R.id.PLACEHOLDER)
-        var color: View = view.findViewById(R.id.color)
-        var cardView: CardView = view.findViewById(R.id.cardView)
+        var name: TextView = view.findViewById(R.id.kommune_name)
+        var color: TextView = view.findViewById(R.id.kommune_name)
+        var cardView: CardView = view.findViewById(R.id.card_view)
         var weather: TextView = view.findViewById(R.id.weather)
         var weatherValue: TextView = view.findViewById(R.id.weatherValue)
     }

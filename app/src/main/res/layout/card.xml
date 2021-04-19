@@ -23,24 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:fontFamily="monospace"
-            android:textSize="100sp"
+            android:textSize="30sp"
             android:background="#ffff8800"/>
-
-        <TextView
-            android:id="@+id/aqi_value"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="monospace"
-            android:textAlignment="center"
-            android:textSize="100sp" />
-
-        <TextView
-            android:id="@+id/PLACEHOLDER"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:textSize="32sp"
-            android:text="check" />
 
         <TextView
             android:id="@+id/weather"
