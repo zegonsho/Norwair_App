@@ -29,7 +29,6 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
 
         lateinit var descriptionArray: Array<Statistics>
         val lookupAqis = "https://api.nilu.no/lookup/aqis?component="
-        val beskrivelse: TextView = findViewById(R.id.kortBeskrivelse)
         val anbefaling: TextView = findViewById(R.id.anbefaling)
         val tittel: TextView = findViewById(R.id.valgtKommuneStatistikk)
         val totalVurdering: View = findViewById(R.id.totalVurdering)
@@ -56,8 +55,7 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 for (x in descriptionArray) {
                     for (y in x.aqis!!) {
                         if (y.color.toString() == valgtKommune.fargekode) {
-                            beskrivelse.text = y.description
-                            anbefaling.text = y.advice
+                            anbefaling.text = y.description + "\n" + y.advice
                             break
                         }
                     }
@@ -65,7 +63,7 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
 
                 stasjonerValgtKommune = Gson().fromJson(Fuel.get(lookupStations+ valgtKommune.kommuneNavn?.toLowerCase()).awaitString(), Array<StasjonerValgtKommune>::class.java)
 
-                stasjonsNavn.add("Høyeste målinger registrert")
+                stasjonsNavn.add("Høyeste målinger registrert i ${valgtKommune.kommuneNavn}")
                 for (element in stasjonerValgtKommune) {
                     stasjonsNavn.add(element.station.toString())
                 }
@@ -102,7 +100,7 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         val barChart: BarChart = findViewById(R.id.barchart)
 
         //Dersom "Generelt" velges tas all data tilgjengelig fra alle målestasjonene og fylles opp på gitte kommune
-        if (stasjonsNavn[position] == "Høyeste målinger registrert") {
+        if (stasjonsNavn[position] == "Høyeste målinger registrert i ${valgtKommune.kommuneNavn}") {
 
             for (data in resultatAqis) {
                 for (i in aqisList.indices) {
@@ -140,7 +138,7 @@ class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         }
 
         //Lager bar charten her
-        val barDataSet = BarDataSet(barEntries, "Values")
+        val barDataSet = BarDataSet(barEntries, "")
         barDataSet.valueTextColor = Color.BLACK
         barDataSet.valueTextSize = 12f
 
