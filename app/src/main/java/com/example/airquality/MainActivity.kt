@@ -1,9 +1,7 @@
 package com.example.airquality
 
 import android.content.Context
-import android.content.Intent
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -36,26 +34,6 @@ class MainActivity : AppCompatActivity() {
         // Create air quality data
         val gson = Gson()
         CoroutineScope(Dispatchers.IO).launch {
-        var bottomNavigation : BottomNavigationView = findViewById(R.id.bottom_navigation) //might have to be initalized before
-        val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            //TODO: implement fragement pages
-            when (item.itemId) {
-                R.id.navigation_search -> {
-                    //openFragment(HomeFragment.newInstance("", ""))
-                    //return@OnNavigationItemSelectedListener true
-                }
-                R.id.navigation_fav -> {
-                    //openFragment(SmsFragment.newInstance("", ""))
-                    //return@OnNavigationItemSelectedListener true
-                }
-                R.id.navigation_info -> {
-                    //openFragment(NotificationFragment.newInstance("", ""))
-                    //return@OnNavigationItemSelectedListener true
-                }
-            }
-            false
-        }
-
             Log.d("first: ", "PASSED")
             try {
                 // Create recyclerview and adapter
@@ -104,18 +82,24 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
         })
-
-        // Button to map
-        val buttonMap: Button = findViewById(R.id.button_map)
-        buttonMap.setOnClickListener{
-            val intent = Intent(this, MapActivity::class.java)
-            startActivity(intent)
-        }
-        // Button to info
-        val buttonInfo: Button = findViewById(R.id.button_info)
-        buttonInfo.setOnClickListener{
-            val intent = Intent(this, InfoActivity::class.java)
-            startActivity(intent)
+        var bottomNavigation : BottomNavigationView = findViewById(R.id.bottom_navigation) //might have to be initalized before
+        val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            //TODO: implement fragement pages
+            when (item.itemId) {
+                R.id.navigation_search -> {
+                    //openFragment(HomeFragment.newInstance("", ""))
+                    //return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_fav -> {
+                    //openFragment(SmsFragment.newInstance("", ""))
+                    //return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_info -> {
+                    //openFragment(NotificationFragment.newInstance("", ""))
+                    //return@OnNavigationItemSelectedListener true
+                }
+            }
+            false
         }
     }
     // Search function
