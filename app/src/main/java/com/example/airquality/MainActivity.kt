@@ -8,6 +8,7 @@ import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.kittinunf.fuel.Fuel
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 for (dataAreas in areasArray) {
                     for (dataStasjon in stasjonArray) {
                         if (dataAreas.area == dataStasjon.area) {
-                            val temp = Adapter(dataAreas.area, dataStasjon.color)
+                            val temp = Adapter(dataAreas.area, dataStasjon.color, null, null)
                             adapterList.add(temp)
                             break
                         }
@@ -91,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         // creates a list of counties which contain the query
         for (i in list) {
             if (i.kommuneNavn!!.contains(query, ignoreCase = true)) {
-                searchList.add(Adapter(i.kommuneNavn, i.fargekode))
+                searchList.add(Adapter(i.kommuneNavn, i.fargekode, i.vaer, i.beskrivelse))
             }
         }
         // creates the recyclerview
