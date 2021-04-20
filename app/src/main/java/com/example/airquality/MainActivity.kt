@@ -40,31 +40,53 @@ class MainActivity : AppCompatActivity() {
                 Log.d("TEST1: ", stasjonArray.size.toString())
                 areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
                 Log.d("TEST2: ", areasArray.size.toString())
-                var vaer: String
-                var vaerBeskrivelse: String
-                for (dataAreas in areasArray) {
+                var vaer = ""
+                var vaerBeskrivelse = ""
+                var pm10Max = 0f
+                var stasjonMedHoyestePM10Maaling: Stasjon
+                var c = 0
+                val adapterArray: Array<Adapter?> = arrayOfNulls(areasArray.size)
+
+                for (i in areasArray.indices) {
                     for (dataStasjon in stasjonArray) {
-                        if (dataAreas.area == dataStasjon.area) {
+                        if ((areasArray[i].area == dataStasjon.area)) {
                             try {
-                                val tempRespone = gson.fromJson(Fuel.get(apiProxyIN2000 + "lat=${dataStasjon.latitude.toString()}" + "&lon=${dataStasjon.longitude.toString()}").awaitString(), Base::class.java)
-                                val list = tempRespone.properties?.timeseries
-                                vaer = list?.get(0)?.data?.instant?.details?.air_temperature.toString() + "°C"
-                                vaerBeskrivelse = list?.get(0)?.data?.next_1_hours?.summary?.symbol_code.toString()
+                                if (c == 0) {
+                                    val tempRespone = gson.fromJson(Fuel.get(apiProxyIN2000 + "lat=${dataStasjon.latitude.toString()}" + "&lon=${dataStasjon.longitude.toString()}").awaitString(), Base::class.java)
+                                    val list = tempRespone.properties?.timeseries
+                                    vaer = list?.get(0)?.data?.instant?.details?.air_temperature.toString() + "°C"
+                                    vaerBeskrivelse = list?.get(0)?.data?.next_1_hours?.summary?.symbol_code.toString()
+                                    c++
+                                }
                             } catch (e: Exception) {
                                 vaer = "Ingen data"
                                 vaerBeskrivelse = "Ingen data"
                             }
-                            val temp = Adapter(dataAreas.area, dataStasjon.color, vaer, vaerBeskrivelse)
-                            adapterList.add(temp)
-                            break
+                            stasjonMedHoyestePM10Maaling = dataStasjon
+                            if (dataStasjon.value?.toFloat() ?: 0f > pm10Max) {
+                                pm10Max = dataStasjon.value?.toFloat() ?: 0f
+                                stasjonMedHoyestePM10Maaling = dataStasjon
+                            }
+
+                            val temp = Adapter(areasArray[i].area, stasjonMedHoyestePM10Maaling.color, vaer, vaerBeskrivelse)
+                            adapterArray[i] = temp
                         }
                     }
+                    c=0
                 }
+
+                for (x in adapterArray) {
+                    if (x != null) {
+                        adapterList.add(x)
+                    }
+                }
+
             } catch (e: Exception) {
                 Log.e("Error ", e.message.toString())
             }
         }
         runOnUiThread{
+            Log.d("Adapter_start", "success")
             var adapter = KommuneAdapter(adapterList)
             val recyclerView: RecyclerView = findViewById(R.id.recycle)
             recyclerView.adapter = adapter
@@ -84,7 +106,7 @@ class MainActivity : AppCompatActivity() {
             }
             // When query is changed
             override fun onQueryTextChange(query: String?): Boolean {
-                if (query.isNullOrEmpty()){
+                if (query.equals("")){
                     runOnUiThread{
                         var adapter = KommuneAdapter(adapterList)
                         val recyclerView: RecyclerView = findViewById(R.id.recycle)
