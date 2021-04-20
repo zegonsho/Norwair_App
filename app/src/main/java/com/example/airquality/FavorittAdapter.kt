@@ -16,10 +16,12 @@ import java.util.*
 class FavorittAdapter(private val favorittList: MutableList<Adapter>): RecyclerView.Adapter<FavorittAdapter.ViewHolder>(){
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var name: TextView = view.findViewById(R.id.PLACEHOLDER)
-        var color: View = view.findViewById(R.id.color)
-        var cardView: CardView = view.findViewById(R.id.cardView)
         var favorittB: CheckBox = view.findViewById(R.id.favorittBoks)
+        var name: TextView = view.findViewById(R.id.kommune_name)
+        var color: TextView = view.findViewById(R.id.kommune_name)
+        var cardView: CardView = view.findViewById(R.id.cardview)
+        var weather: TextView = view.findViewById(R.id.weather)
+        var weatherValue: TextView = view.findViewById(R.id.weatherValue)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavorittAdapter.ViewHolder {
