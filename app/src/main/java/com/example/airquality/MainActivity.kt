@@ -64,10 +64,12 @@ class MainActivity : AppCompatActivity() {
                 Log.e("Error ", e.message.toString())
             }
         }
-        var adapter = KommuneAdapter(adapterList)
-        val recyclerView: RecyclerView = findViewById(R.id.recycle)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+        runOnUiThread{
+            var adapter = KommuneAdapter(adapterList)
+            val recyclerView: RecyclerView = findViewById(R.id.recycle)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+        }
         // Create searchview and listener
         val searchView: SearchView = findViewById(R.id.search)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -81,13 +83,23 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             // When query is changed
-            override fun onQueryTextChange(newText: String?): Boolean {
+            override fun onQueryTextChange(query: String?): Boolean {
+                if (query.isNullOrEmpty()){
+                    runOnUiThread{
+                        var adapter = KommuneAdapter(adapterList)
+                        val recyclerView: RecyclerView = findViewById(R.id.recycle)
+                        recyclerView.adapter = adapter
+                        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+                    }
+                    val keyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    keyboard.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+                }
                 return true
             }
         })
         var bottomNavigation : BottomNavigationView = findViewById(R.id.bottom_navigation) //might have to be initalized before
         val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            //TODO: implement fragement pages
+            //TODO: implement fragment pages
             when (item.itemId) {
                 R.id.navigation_search -> {
                     //openFragment(HomeFragment.newInstance("", ""))
@@ -108,6 +120,7 @@ class MainActivity : AppCompatActivity() {
     // Search function
     private fun searchCounty(query: String, list: MutableList<Adapter>) {
         var searchList = mutableListOf<Adapter>()
+        Log.d("query", query)
         // creates a list of counties which contain the query
         for (i in list) {
             if (i.kommuneNavn!!.contains(query, ignoreCase = true)) {
