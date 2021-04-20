@@ -2,6 +2,7 @@ package com.example.airquality
 
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,11 +33,17 @@ class KommuneAdapter(private val adapterList: MutableList<Adapter>): RecyclerVie
         viewHolder.name.text = adapterList[pos].kommuneNavn
         viewHolder.color.setBackgroundColor(Color.parseColor("#${adapterList[pos].fargekode}"))
 
+        viewHolder.favorittB.setOnClickListener {
 
-        if (viewHolder.favorittB.isChecked) {
-            favorittList.add(adapterList[pos])
-        } else {
-            favorittList.remove(adapterList[pos])
+            if (viewHolder.favorittB.isChecked) {
+                favorittList.add(adapterList[pos])
+                Log.d("list size after adding:", favorittList.size.toString())
+                Log.d("Added", adapterList[pos].kommuneNavn.toString())
+            } else {
+                favorittList.remove(adapterList[pos])
+                Log.d("list size after rm: ", favorittList.size.toString())
+                Log.d("Removed", adapterList[pos].kommuneNavn.toString())
+            }
         }
 
         viewHolder.cardView.setOnClickListener {
