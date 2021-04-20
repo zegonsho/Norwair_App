@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AirQuality">
-        <activity android:name=".CardViewClickActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +20,7 @@
         </activity>
         <activity android:name=".MapActivity"></activity>
         <activity android:name=".InfoActivity"></activity>
-        <activity android:name=".StatisticsActivity"></activity>
+        <activity android:name=".StatistikkActivity"></activity>
     </application>
 
 </manifest>
