@@ -5,39 +5,41 @@
     android:layout_height="match_parent"
     tools:context=".StatisticsActivity">
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+
+
+    <TextView
+        android:id="@+id/valgtKommuneStatistikk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-    />
+        android:text="Kommune"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        />
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/spinner"
-        android:layout_marginTop="100dp">
+        android:layout_alignTop="@+id/valgtKommuneStatistikk"
+        android:layout_marginTop="50dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <TextView
-                android:id="@+id/valgtKommuneStatistikk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:text="Kommune"
-                android:textColor="@color/black"
-                android:textSize="32sp"
-            />
+                android:layout_alignParentTop="true"
+                />
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barchart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_alignTop="@+id/valgtKommuneStatistikk"
+                android:layout_alignTop="@+id/spinner"
                 android:layout_marginTop="75dp"
             />
 
@@ -694,7 +696,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp" >
+                    android:layout_height="250dp" >
 
                     <TextView
                         android:id="@+id/anbefalinger"
@@ -708,25 +710,13 @@
                         />
 
                     <TextView
-                        android:id="@+id/kortBeskrivelse"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignTop="@+id/anbefalinger"
-                        android:layout_marginTop="50dp"
-                        android:textSize="16sp"
-                        android:text="kort beskrivelse"/>
-
-                    <TextView
                         android:id="@+id/anbefaling"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignTop="@+id/kortBeskrivelse"
-                        android:layout_marginTop="30dp"
-                        android:text="Anbefaling"
+                        android:layout_alignTop="@+id/anbefalinger"
+                        android:layout_marginTop="50dp"
                         android:textSize="16sp"
-                        />
+                        android:text="Anbefaling"/>
 
 
                 </RelativeLayout>
@@ -740,7 +730,7 @@
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:layout_alignTop="@+id/cardview"
-                android:layout_marginTop="175dp"
+                android:layout_marginTop="250dp"
                 android:layout_centerHorizontal="true"/>
 
             <View
