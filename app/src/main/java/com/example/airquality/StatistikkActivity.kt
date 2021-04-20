@@ -21,7 +21,7 @@ import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
-class StatisticsActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class StatistikkActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

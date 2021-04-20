@@ -10,7 +10,6 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
@@ -46,7 +45,8 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>): RecyclerVi
         }
 
         viewHolder.cardView.setOnClickListener {
-            val intent = Intent(it.context, CardViewClickActivity::class.java)
+            valgtKommune = kommuneListe[pos]
+            val intent = Intent(it.context, StatistikkActivity::class.java)
             it.context.startActivity(intent)
         }
         viewHolder.name.text = kommuneListe[pos].kommuneNavn
