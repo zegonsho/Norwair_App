@@ -64,6 +64,10 @@ class MainActivity : AppCompatActivity() {
                 Log.e("Error ", e.message.toString())
             }
         }
+        var adapter = KommuneAdapter(adapterList)
+        val recyclerView: RecyclerView = findViewById(R.id.recycle)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
         // Create searchview and listener
         val searchView: SearchView = findViewById(R.id.search)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -116,11 +120,6 @@ class MainActivity : AppCompatActivity() {
             val recyclerView: RecyclerView = findViewById(R.id.recycle)
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-            var viewHolder = adapter.createViewHolder(recyclerView, searchList.size)
-            // Fills the recyclerview
-            for (i in searchList) {
-                adapter.bindViewHolder(viewHolder, searchList.indexOf(i))
-            }
         }
     }
 }
