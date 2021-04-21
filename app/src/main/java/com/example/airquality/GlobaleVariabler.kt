@@ -2,10 +2,11 @@ package com.example.airquality
 
 import com.github.mikephil.charting.data.BarEntry
 
-
 //Main
 val adapterList = mutableListOf<Adapter>()
 
+//API
+lateinit var valgtKommune: Adapter
 
 //statistikk
 var stasjonsNavn = mutableListOf<String>()
