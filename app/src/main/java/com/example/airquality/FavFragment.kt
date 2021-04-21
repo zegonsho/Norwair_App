@@ -12,7 +12,7 @@ class FavFragment : Fragment() {
     private lateinit var viewOfLayout: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewOfLayout = inflater.inflate(R.layout.fragment_fav, container, false)
-        var adapter = FavorittAdapter(favorittList)
+        var adapter = KommuneAdapter(favorittList)
         val recyclerView: RecyclerView = viewOfLayout.findViewById(R.id.recycle)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)

@@ -40,13 +40,13 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>): RecyclerVi
         }
         viewHolder.favorittB.setOnClickListener {
             if (viewHolder.favorittB.isChecked) {
-                favorittList.add(adapterList[pos])
+                favorittList.add(kommuneListe[pos])
                 Log.d("list size after adding:", favorittList.size.toString())
-                Log.d("Added", adapterList[pos].kommuneNavn.toString())
+                Log.d("Added", kommuneListe[pos].kommuneNavn.toString())
             } else {
-                favorittList.remove(adapterList[pos])
+                favorittList.remove(kommuneListe[pos])
                 Log.d("list size after rm: ", favorittList.size.toString())
-                Log.d("Removed", adapterList[pos].kommuneNavn.toString())
+                Log.d("Removed", kommuneListe[pos].kommuneNavn.toString())
             }
         }
     }
