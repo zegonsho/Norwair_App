@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class KommuneAdapter(private val kommuneListe: MutableList<Adapter>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>() {
@@ -31,7 +30,7 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>): RecyclerVi
 
         viewHolder.cardView.setOnClickListener {
             valgtKommune = kommuneListe[pos]
-            val intent = Intent(it.context, StatisticsActivity::class.java)
+            val intent = Intent(it.context, StatistikkActivity::class.java)
             it.context.startActivity(intent)
         }
     }

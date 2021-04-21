@@ -39,24 +39,41 @@ class SearchFragment : Fragment() {
                 Log.d("TEST1: ", stasjonArray.size.toString())
                 areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
                 Log.d("TEST2: ", areasArray.size.toString())
-                var vaer: String
-                var vaerBeskrivelse: String
-                for (dataAreas in areasArray) {
+                var vaer: String = ""
+                var vaerBeskrivelse: String = ""
+                var pm10Max = 0f
+                var stasjonMedHoyestePM10Maaling: Stasjon
+                var c = 0
+                val adapterArray: Array<Adapter?> = arrayOfNulls(areasArray.size)
+                for (i in areasArray.indices) {
                     for (dataStasjon in stasjonArray) {
-                        if (dataAreas.area == dataStasjon.area) {
+                        if ((areasArray[i].area == dataStasjon.area)) {
                             try {
-                                val tempRespone = gson.fromJson(Fuel.get(apiProxyIN2000 + "lat=${dataStasjon.latitude.toString()}" + "&lon=${dataStasjon.longitude.toString()}").awaitString(), Base::class.java)
-                                val list = tempRespone.properties?.timeseries
-                                vaer = list?.get(0)?.data?.instant?.details?.air_temperature.toString() + "°C"
-                                vaerBeskrivelse = list?.get(0)?.data?.next_1_hours?.summary?.symbol_code.toString()
+                                if (c == 0) {
+                                    val tempRespone = gson.fromJson(Fuel.get(apiProxyIN2000 + "lat=${dataStasjon.latitude.toString()}" + "&lon=${dataStasjon.longitude.toString()}").awaitString(), Base::class.java)
+                                    val list = tempRespone.properties?.timeseries
+                                    vaer = list?.get(0)?.data?.instant?.details?.air_temperature.toString() + "°C"
+                                    vaerBeskrivelse = list?.get(0)?.data?.next_1_hours?.summary?.symbol_code.toString()
+                                    c++
+                                }
                             } catch (e: Exception) {
                                 vaer = "Ingen data"
                                 vaerBeskrivelse = "Ingen data"
                             }
-                            val temp = Adapter(dataAreas.area, dataStasjon.color, vaer, vaerBeskrivelse)
-                            adapterList.add(temp)
-                            break
+                            stasjonMedHoyestePM10Maaling = dataStasjon
+                            if (dataStasjon.value?.toFloat() ?: 0f > pm10Max) {
+                                pm10Max = dataStasjon.value?.toFloat() ?: 0f
+                                stasjonMedHoyestePM10Maaling = dataStasjon
+                            }
+                            val temp = Adapter(areasArray[i].area, stasjonMedHoyestePM10Maaling.color, vaer, vaerBeskrivelse)
+                            adapterArray[i] = temp
                         }
+                    }
+                    c=0
+                }
+                for (x in adapterArray) {
+                    if (x != null) {
+                        adapterList.add(x)
                     }
                 }
                 updateRecycler(adapterList)
@@ -87,9 +104,16 @@ class SearchFragment : Fragment() {
     // Search function
     private fun searchCounty(query: String, list: MutableList<Adapter>) {
         var searchList = mutableListOf<Adapter>()
+        // Adds counties that start with the query to the searchList
         for (i in list) {
-            if (i.kommuneNavn!!.contains(query, ignoreCase = true)) {
-                searchList.add(Adapter(i.kommuneNavn, i.fargekode, i.vaer, i.beskrivelse))
+            if (i.kommuneNavn!!.startsWith(query, ignoreCase = true)) {
+                searchList.add(i)
+            }
+        }
+        // Adds counties that contains the query and is not already in the list to the searchList
+        for (i in list) {
+            if (i.kommuneNavn!!.contains(query, ignoreCase = true) && !searchList.contains(i)) {
+                searchList.add(i)
             }
         }
         updateRecycler(searchList)
