@@ -3,12 +3,14 @@ package com.example.airquality
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.kittinunf.fuel.Fuel
@@ -117,6 +119,12 @@ class SearchFragment : Fragment() {
             }
         }
         updateRecycler(searchList)
+        // If query is not in list
+        if(searchList.size <= 0){
+            val toast: Toast = Toast.makeText(this.context, "No entries containing '$query' found", Toast.LENGTH_SHORT)
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            toast.show()
+        }
     }
     // Update recyclerview
     private fun updateRecycler(list: MutableList<Adapter>){
