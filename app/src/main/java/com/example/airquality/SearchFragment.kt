@@ -127,6 +127,7 @@ class SearchFragment : Fragment() {
             recyclerView.layoutManager = LinearLayoutManager(this.context)
         }
     }
+
     companion object {
         // Method to create a new instance of this fragment
         fun newInstance(): SearchFragment{
