@@ -41,8 +41,8 @@ class SearchFragment : Fragment() {
                 Log.d("TEST1: ", stasjonArray.size.toString())
                 areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
                 Log.d("TEST2: ", areasArray.size.toString())
-                var vaer: String = ""
-                var vaerBeskrivelse: String = ""
+                var vaer = ""
+                var vaerBeskrivelse = ""
                 var pm10Max = 0f
                 var stasjonMedHoyestePM10Maaling: Stasjon
                 var c = 0
