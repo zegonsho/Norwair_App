@@ -1,5 +1,6 @@
 package com.example.airquality
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.util.Log
@@ -8,14 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
 
 
-class KommuneAdapter(private val kommuneListe: MutableList<Adapter>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>() {
-
+class KommuneAdapter(private val kommuneListe: MutableList<Adapter>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>(){
+    private val context: Context? = null
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.kommune_name)
         var color: TextView = view.findViewById(R.id.kommune_name)
