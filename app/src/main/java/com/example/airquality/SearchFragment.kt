@@ -129,7 +129,7 @@ class SearchFragment : Fragment() {
     // Update recyclerview
     private fun updateRecycler(list: MutableList<Adapter>){
         activity!!.runOnUiThread {
-            var adapter = KommuneAdapter(list)
+            var adapter = KommuneAdapter(list, this.context!!)
             val recyclerView: RecyclerView = activity!!.findViewById(R.id.recycle)
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(this.context)

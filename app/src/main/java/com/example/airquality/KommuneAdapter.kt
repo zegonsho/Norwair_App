@@ -1,7 +1,6 @@
 package com.example.airquality
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,8 +13,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class KommuneAdapter(private val kommuneListe: MutableList<Adapter>): RecyclerView.Adapter<KommuneAdapter.ViewHolder>(){
-    private val context: Context? = null
+class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Context): RecyclerView.Adapter<KommuneAdapter.ViewHolder>(){
+    private val context: Context? = context
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.findViewById(R.id.kommune_name)
         var color: TextView = view.findViewById(R.id.kommune_name)
@@ -35,8 +34,11 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>): RecyclerVi
         viewHolder.weatherValue.text = kommuneListe[pos].beskrivelse.toString()
         viewHolder.cardView.setOnClickListener {
             valgtKommune = kommuneListe[pos]
-            val intent = Intent(it.context, StatistikkActivity::class.java)
-            it.context.startActivity(intent)
+            (context as AppCompatActivity).supportActionBar!!.title = "Statistics ${valgtKommune.kommuneNavn}"
+            val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.container, StatsFragment.newInstance())
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
         viewHolder.favorittB.setOnClickListener {
             if (viewHolder.favorittB.isChecked) {

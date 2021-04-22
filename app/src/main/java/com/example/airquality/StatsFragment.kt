@@ -25,7 +25,7 @@ import java.lang.Exception
 class StatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var viewOfLayout: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewOfLayout = inflater.inflate(R.layout.fragment_search, container, false)
+        viewOfLayout = inflater.inflate(R.layout.fragment_stats, container, false)
         lateinit var descriptionArray: Array<Statistics>
         val lookupAqis = "https://api.nilu.no/lookup/aqis?component="
         val anbefaling: TextView = viewOfLayout.findViewById(R.id.anbefaling)
