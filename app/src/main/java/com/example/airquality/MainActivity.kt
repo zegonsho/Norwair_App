@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
 
         var bottomNavigation : BottomNavigationView = findViewById(R.id.bottom_navigation) //might have to be initalized before
         bottomNavigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            //TODO: implement fragment pages
             when (item.itemId) {
                 R.id.navigation_search -> {
                     supportActionBar!!.title = "Search"
