@@ -1,13 +1,16 @@
 package com.example.airquality
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.util.Log
-import android.view.Gravity
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.*
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.coroutines.awaitString
 import com.github.mikephil.charting.charts.BarChart
@@ -18,20 +21,16 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.gson.Gson
 import kotlinx.coroutines.runBlocking
 import java.lang.Exception
-import java.util.*
-import kotlin.collections.ArrayList
 
-class StatistikkActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_statistics)
-
+class StatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
+    private lateinit var viewOfLayout: View
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        viewOfLayout = inflater.inflate(R.layout.fragment_stats, container, false)
         lateinit var descriptionArray: Array<Statistics>
         val lookupAqis = "https://api.nilu.no/lookup/aqis?component="
-        val anbefaling: TextView = findViewById(R.id.anbefaling)
-        val tittel: TextView = findViewById(R.id.valgtKommuneStatistikk)
-        val totalVurdering: View = findViewById(R.id.totalVurdering)
+        val anbefaling: TextView = viewOfLayout.findViewById(R.id.anbefaling)
+        val tittel: TextView = viewOfLayout.findViewById(R.id.valgtKommuneStatistikk)
+        val totalVurdering: View = viewOfLayout.findViewById(R.id.totalVurdering)
 
         tittel.text = valgtKommune.kommuneNavn
         totalVurdering.setBackgroundColor(Color.parseColor("#" + valgtKommune.fargekode.toString()))
@@ -84,20 +83,20 @@ class StatistikkActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             }
         }
 
-        val spinner: Spinner = findViewById(R.id.spinner)
+        val spinner: Spinner = viewOfLayout.findViewById(R.id.spinner)
         spinner.onItemSelectedListener = this
-        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, stasjonsNavn)
+        val aa = ArrayAdapter(this.context!!, android.R.layout.simple_spinner_item, stasjonsNavn)
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = aa
+        return viewOfLayout
     }
-
     override fun onNothingSelected(parent: AdapterView<*>?) {
         //TODO: onNothingSelected()
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-        val barChart: BarChart = findViewById(R.id.barchart)
+        val barChart: BarChart = viewOfLayout.findViewById(R.id.barchart)
 
         //Dersom "Generelt" velges tas all data tilgjengelig fra alle målestasjonene og fylles opp på gitte kommune
         if (stasjonsNavn[position] == "Høyeste målinger registrert i ${valgtKommune.kommuneNavn}") {
@@ -149,5 +148,12 @@ class StatistikkActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         barChart.data = data
         barChart.xAxis.setLabelsToSkip(0)
         barChart.animateX(100)
+    }
+
+    companion object {
+        // Method to create a new instance of this fragment
+        fun newInstance(): StatsFragment{
+            return StatsFragment()
+        }
     }
 }
