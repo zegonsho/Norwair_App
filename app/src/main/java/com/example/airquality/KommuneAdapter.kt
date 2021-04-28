@@ -30,12 +30,12 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
     override fun onBindViewHolder(viewHolder: ViewHolder, pos: Int) {
         viewHolder.name.text = kommuneListe[pos].kommuneNavn
         viewHolder.color.setBackgroundColor(Color.parseColor("#${kommuneListe[pos].fargekode}"))
-        viewHolder.weather.text = kommuneListe[pos].vaer.toString()
-        viewHolder.weatherValue.text = kommuneListe[pos].beskrivelse.toString()
+        viewHolder.weather.text = kommuneListe[pos].beskrivelse.toString()
+        viewHolder.weatherValue.text = kommuneListe[pos].vaer.toString()
         viewHolder.cardView.setOnClickListener {
             valgtKommune = kommuneListe[pos]
             (context as AppCompatActivity).supportActionBar!!.title = "Statistics ${valgtKommune.kommuneNavn}"
-            val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+            val transaction = context.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container, StatsFragment.newInstance())
             transaction.addToBackStack(null)
             transaction.commit()
