@@ -18,8 +18,9 @@
         android:layout_height="80dp"
         android:layout_gravity="bottom"
         android:background="@color/black"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
+        app:itemBackground="@drawable/bottom_nav_selector"
+        app:itemIconTint="@color/color_selector"
+        app:itemTextColor="@color/color_selector"
         app:layout_constraintBottom_toBottomOf="@+id/recycle"
         app:menu="@menu/bottom_nav_menu"
         tools:layout_editor_absoluteX="0dp" />
