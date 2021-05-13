@@ -1,16 +1,18 @@
 package com.example.airquality
 
 import android.content.Context
+import android.content.res.Resources
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.kittinunf.fuel.Fuel
@@ -19,6 +21,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 
 class SearchFragment : Fragment() {
     private lateinit var viewOfLayout: View
@@ -67,7 +70,18 @@ class SearchFragment : Fragment() {
                                 pm10Max = dataStasjon.value?.toFloat() ?: 0f
                                 stasjonMedHoyestePM10Maaling = dataStasjon
                             }
-                            val temp = Adapter(areasArray[i].area, stasjonMedHoyestePM10Maaling.color, vaer, vaerBeskrivelse)
+
+                            val res: Resources = resources
+                            val mDrawableName = vaerBeskrivelse
+                            val resID: Int = res.getIdentifier(mDrawableName, "raw", activity?.packageName)
+                            Log.d("RESOURCES ID C", "onCreateView: $resID")
+                            val temp = Adapter(areasArray[i].area, stasjonMedHoyestePM10Maaling.color, vaer, vaerBeskrivelse, resID, stasjonMedHoyestePM10Maaling.value, false)
+                            //val test = resources.getIdentifier(vaerBeskrivelse, "drawable")
+                            //Log.d("RESOURCES ID C", "onCreateView: $test")
+
+
+                            //val drawable: Drawable = res.getDrawable(resID)
+                            //icon.setImageDrawable(drawable)
                             adapterArray[i] = temp
                         }
                     }
@@ -75,6 +89,7 @@ class SearchFragment : Fragment() {
                 }
                 for (x in adapterArray) {
                     if (x != null) {
+
                         adapterList.add(x)
                     }
                 }
@@ -105,7 +120,8 @@ class SearchFragment : Fragment() {
     }
     // Search function
     private fun searchCounty(query: String, list: MutableList<Adapter>) {
-        var searchList = mutableListOf<Adapter>()
+        //var searchList = mutableListOf<Adapter>()
+        var searchList = mutableSetOf<Adapter>()
         // Adds counties that start with the query to the searchList
         for (i in list) {
             if (i.kommuneNavn!!.startsWith(query, ignoreCase = true)) {
@@ -118,7 +134,9 @@ class SearchFragment : Fragment() {
                 searchList.add(i)
             }
         }
-        updateRecycler(searchList)
+        val setOfSearchList = mutableListOf<Adapter>()
+        setOfSearchList.addAll(searchList)
+        updateRecycler(setOfSearchList)
         // If query is not in list
         if(searchList.size <= 0){
             val toast: Toast = Toast.makeText(this.context, "No entries containing '$query' found", Toast.LENGTH_SHORT)

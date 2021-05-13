@@ -141,7 +141,7 @@ class StatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         barDataSet.valueTextColor = Color.BLACK
         barDataSet.valueTextSize = 12f
 
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
+        barDataSet.setColors(ColorTemplate.LIBERTY_COLORS)
 
         val data = BarData(xValues, barDataSet)
         data.setValueTextColor(Color.BLACK)

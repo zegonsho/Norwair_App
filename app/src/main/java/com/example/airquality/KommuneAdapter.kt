@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -20,6 +21,8 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
         var color: TextView = view.findViewById(R.id.kommune_name)
         var cardView: CardView = view.findViewById(R.id.cardview)
         var weather: TextView = view.findViewById(R.id.weather)
+        //var weather: ImageView = view.findViewById(R.id.weather)
+        var aqi: TextView = view.findViewById(R.id.AQIValue)
         var weatherValue: TextView = view.findViewById(R.id.weatherValue)
         var favorittB: CheckBox = view.findViewById(R.id.favorittBoks)
     }
@@ -30,8 +33,12 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
     override fun onBindViewHolder(viewHolder: ViewHolder, pos: Int) {
         viewHolder.name.text = kommuneListe[pos].kommuneNavn
         viewHolder.color.setBackgroundColor(Color.parseColor("#${kommuneListe[pos].fargekode}"))
-        viewHolder.weather.text = kommuneListe[pos].beskrivelse.toString()
+        //viewHolder.weather.text = kommuneListe[pos].beskrivelse.toString()
+        kommuneListe[pos].ikonID?.let { viewHolder.weather.setBackgroundResource(it) }
         viewHolder.weatherValue.text = kommuneListe[pos].vaer.toString()
+
+        viewHolder.aqi.text = kommuneListe[pos].aqiVal?.toInt().toString()
+
         viewHolder.cardView.setOnClickListener {
             valgtKommune = kommuneListe[pos]
             (context as AppCompatActivity).supportActionBar!!.title = "Statistics ${valgtKommune.kommuneNavn}"
