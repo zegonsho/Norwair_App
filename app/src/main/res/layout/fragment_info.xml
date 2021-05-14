@@ -8,11 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InfoFragment">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/container">
-    </FrameLayout>
+
     <Spinner
         android:id="@+id/spinnerInfo"
         android:layout_width="match_parent"

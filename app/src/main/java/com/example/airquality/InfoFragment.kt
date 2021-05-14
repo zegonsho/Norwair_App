@@ -74,7 +74,7 @@ class InfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
-
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
     companion object {
         // Method to create a new instance of this fragment
@@ -82,10 +82,4 @@ class InfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
             return InfoFragment()
         }
     }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        TODO("Not yet implemented")
-    }
-
-
 }
