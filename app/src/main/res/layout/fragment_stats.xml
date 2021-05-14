@@ -714,6 +714,8 @@
                         android:layout_alignTop="@+id/anbefalinger"
                         android:layout_marginTop="50dp"
                         android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
                         android:text="Anbefaling"/>
 
 
@@ -737,7 +739,7 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="30dp"
                 android:layout_alignTop="@+id/vurdering"
-                android:layout_marginBottom="90dp"
+                android:layout_marginBottom="150dp"
                 />
         </RelativeLayout>
     </ScrollView>

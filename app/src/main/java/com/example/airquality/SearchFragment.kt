@@ -87,9 +87,9 @@ class SearchFragment : Fragment() {
                     }
                     c=0
                 }
+                adapterList = mutableSetOf()
                 for (x in adapterArray) {
                     if (x != null) {
-
                         adapterList.add(x)
                     }
                 }
@@ -119,24 +119,23 @@ class SearchFragment : Fragment() {
         return viewOfLayout
     }
     // Search function
-    private fun searchCounty(query: String, list: MutableList<Adapter>) {
+    private fun searchCounty(query: String, set: MutableSet<Adapter>) {
         //var searchList = mutableListOf<Adapter>()
-        var searchList = mutableSetOf<Adapter>()
+        val searchList = mutableSetOf<Adapter>()
         // Adds counties that start with the query to the searchList
-        for (i in list) {
+        for (i in set) {
             if (i.kommuneNavn!!.startsWith(query, ignoreCase = true)) {
                 searchList.add(i)
             }
         }
         // Adds counties that contains the query and is not already in the list to the searchList
-        for (i in list) {
+        for (i in set) {
             if (i.kommuneNavn!!.contains(query, ignoreCase = true) && !searchList.contains(i)) {
                 searchList.add(i)
             }
         }
-        val setOfSearchList = mutableListOf<Adapter>()
-        setOfSearchList.addAll(searchList)
-        updateRecycler(setOfSearchList)
+
+        updateRecycler(searchList)
         // If query is not in list
         if(searchList.size <= 0){
             val toast: Toast = Toast.makeText(this.context, "No entries containing '$query' found", Toast.LENGTH_SHORT)
@@ -145,9 +144,11 @@ class SearchFragment : Fragment() {
         }
     }
     // Update recyclerview
-    private fun updateRecycler(list: MutableList<Adapter>){
+    private fun updateRecycler(set: MutableSet<Adapter>){
         activity!!.runOnUiThread {
-            var adapter = KommuneAdapter(list, this.context!!)
+            val tmp = mutableListOf<Adapter>()
+            tmp.addAll(set)
+            val adapter = KommuneAdapter(tmp, this.context!!)
             val recyclerView: RecyclerView = activity!!.findViewById(R.id.recycle)
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(this.context)
