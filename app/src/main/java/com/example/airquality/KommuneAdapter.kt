@@ -38,13 +38,7 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
         viewHolder.weatherValue.text = kommuneListe[pos].vaer.toString()
 
         viewHolder.aqi.text = kommuneListe[pos].aqiVal?.toInt().toString()
-        kommuneListe[pos].fav = false
 
-        for(i in favorittList){
-            if(i.fav == true && i.kommuneNavn == kommuneListe[pos].kommuneNavn){
-                viewHolder.favorittB.isChecked = true
-            }
-        }
 
         viewHolder.cardView.setOnClickListener {
             valgtKommune = kommuneListe[pos]
