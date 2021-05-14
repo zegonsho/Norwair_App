@@ -19,7 +19,7 @@
     <string name="SO2desc">Svoveldioksid (SO2) oppstår ved forbrenning av svovelholdige fossile brennstoff som kull og tungolje. Måles i mikrogram per kubikkmeter.</string>
     <string name="FAQ">Frequently asked questions:</string>
     <string name="q1String">Hvorfor finner jeg ikke informasjon om kommunen min?</string>
-    <string name="a1String">Dataen vi benytter oss av er hentet fra NILU. For øyeblikket er ikke alle kommuner inkludert i NILU sitt API, og derfor vil ikke data vises</string>
+    <string name="a1String">Dataen vi benytter oss av er hentet fra NILU. For øyeblikket er ikke alle kommuner inkludert i NILU sitt API, og derfor vil ikke data fra din kommune vises</string>
     <string name="q2String">Hva avgjør farenivået i kommuneoversikten?</string>
     <string name="a2String">Kommunene sin farge i kommuneoversikten baserer seg kun på de siste PM10 målingene i kommunen.</string>
     <string name="q3String">Hva bestemmer de forskjellige farenivåene?</string>

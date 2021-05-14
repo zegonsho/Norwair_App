@@ -1,141 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InfoFragment">
 
-    <Spinner
-        android:id="@+id/spinnerInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal= "16dp"
-        app:layout_constraintBottom_toTopOf="@+id/unit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
-
     <TextView
-        android:id="@+id/unit"
+        android:id="@+id/delimeter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:text="unit"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerInfo" />
+        android:layout_centerHorizontal="true"
+        android:text=""/>
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal= "16dp"
-        android:text="To contain info"
-        app:layout_constraintBottom_toTopOf="@+id/FAQ"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unit" />
-
-    <TextView
-        android:id="@+id/FAQ"
+    <ScrollView
+        android:layout_alignTop="@+id/delimeter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/FAQ"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/question1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        android:layout_marginTop="50dp"
 
-    <TextView
-        android:id="@+id/question1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/q1String"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/answer1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FAQ" />
+        >
 
-    <TextView
-        android:id="@+id/answer1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal= "16dp"
-        android:text="@string/a1String"
-        app:layout_constraintBottom_toTopOf="@+id/question2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question1"
-        app:layout_constraintHorizontal_bias="0.0" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-    <TextView
-        android:id="@+id/question2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/q2String"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/answer2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer1" />
+            >
 
-    <TextView
-        android:id="@+id/answer2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:text="@string/a2String"
-        app:layout_constraintBottom_toTopOf="@+id/question3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question2" />
 
-    <TextView
-        android:id="@+id/question3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/q3String"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/answer3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer2" />
+            <TextView
+                android:id="@+id/valg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Velg luftpartikkel under:"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
 
-    <TextView
-        android:id="@+id/answer3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal= "16dp"
-        android:layout_marginBottom="80dp"
-        android:text="@string/a3String"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question3"
-        app:layout_constraintHorizontal_bias="0.0" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+            />
+
+           <Spinner
+                android:id="@+id/spinnerInfo"
+                android:layout_width="379dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_alignTop="@+id/valg"
+
+                />
+
+            <TextView
+                android:id="@+id/unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_alignTop="@+id/spinnerInfo"
+                android:text="unit"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+            />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To contain info"
+                android:textSize="16sp"
+                android:layout_alignTop="@+id/unit"
+                android:layout_marginTop="40dp"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                 />
+
+            <TextView
+                android:id="@+id/FAQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/FAQ"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@+id/description"
+                android:layout_marginTop="150dp"
+                />
+
+            <TextView
+                android:id="@+id/question1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/q1String"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:layout_alignTop="@+id/FAQ"
+                android:layout_marginTop="40dp"
+                 />
+
+            <TextView
+                android:id="@+id/answer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/a1String"
+                android:textSize="16sp"
+                android:layout_alignTop="@+id/question1"
+                android:layout_marginTop="25dp"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                />
+
+            <TextView
+                android:id="@+id/question2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/q2String"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_alignTop="@+id/answer1"
+                android:layout_marginTop="100dp"
+
+
+            />
+
+            <TextView
+                 android:id="@+id/answer2"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="@string/a2String"
+                 android:textSize="16sp"
+                android:layout_alignTop="@+id/question2"
+                android:layout_marginTop="25dp"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                 />
+
+            <TextView
+                android:id="@+id/question3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/q3String"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_alignTop="@+id/answer2"
+                android:layout_marginTop="100dp"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                  />
+
+            <TextView
+                android:id="@+id/answer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/a3String"
+                android:textSize="16sp"
+                android:layout_alignTop="@+id/question3"
+                android:layout_marginTop="25dp"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="150dp"
+            />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
