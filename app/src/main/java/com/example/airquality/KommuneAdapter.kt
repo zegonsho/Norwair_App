@@ -40,10 +40,19 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
         viewHolder.aqi.text = kommuneListe[pos].aqiVal?.toInt().toString()
 
 
-        if(kommuneListe[pos].fav == false && kommuneListe[pos] !in favorittList){
-            viewHolder.favorittB.isChecked = false
-        }else if(kommuneListe[pos].fav == true && kommuneListe[pos] in favorittList){
+        if(kommuneListe[pos] in favorittList){
+            kommuneListe[pos].fav = true
             viewHolder.favorittB.isChecked = true
+        }else if(kommuneListe[pos] !in favorittList){
+            kommuneListe[pos].fav = false
+            viewHolder.favorittB.isChecked = false
+        }
+
+        for(i in favorittList){
+            if(kommuneListe[pos].kommuneNavn == i.kommuneNavn) {
+                kommuneListe[pos].fav = true
+                viewHolder.favorittB.isChecked = true
+            }
         }
 
         viewHolder.cardView.setOnClickListener {
