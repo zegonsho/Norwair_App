@@ -172,6 +172,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/q4String"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:layout_alignTop="@+id/answer3"
                 android:layout_marginTop="100dp"
                 android:layout_centerHorizontal="true"
@@ -197,8 +198,9 @@
                 android:layout_height="match_parent"
                 android:text="@string/q5String"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:layout_alignTop="@+id/answer4"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="150dp"
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 />

@@ -25,7 +25,7 @@
     <string name="q3String">Hva bestemmer de forskjellige farenivåene?</string>
     <string name="a3String">Farenivåene samt målingene er begge hentet fra NILU sitt API, hvor målingene er gjort ved gram per kubikkmeter.</string>
     <string name="q4String">Hvem er sårbare grupper?</string>
-    <string name="a4String">Ifølge FHI er de mest utsatte ved dårlig luftkvalitet delen av befolkningen med astma og andre lungesykdommer, hjerte- og karsykdommer og diabetes, gravide, eldre og barn</string>
+    <string name="a4String">Ifølge FHI er de mest utsatte ved dårlig luftkvalitet den delen av befolkningen med astma og andre lungesykdommer, hjerte- og karsykdommer og diabetes, gravide, eldre og barn</string>
     <string name="q5String">Hvordan kan jeg beskytte meg mot dårlig luftkvalitet?</string>
-    <string name="a5String">Ifølge Aftenposten rådes det å unngå tungt trafikerte veier, begrense opphold ute på de verste dagene. Bruk av kuldemaske anbefales også ved kalde dager.</string>
+    <string name="a5String">Det rådes å unngå tungt trafikerte veier, begrense opphold ute på de verste dagene. Bruk av kuldemaske anbefales også ved kalde dager.</string>
 </resources>
