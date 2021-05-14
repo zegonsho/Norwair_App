@@ -40,6 +40,12 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
         viewHolder.aqi.text = kommuneListe[pos].aqiVal?.toInt().toString()
 
 
+        if(kommuneListe[pos].fav == false && kommuneListe[pos] !in favorittList){
+            viewHolder.favorittB.isChecked = false
+        }else if(kommuneListe[pos].fav == true && kommuneListe[pos] in favorittList){
+            viewHolder.favorittB.isChecked = true
+        }
+
         viewHolder.cardView.setOnClickListener {
             valgtKommune = kommuneListe[pos]
             (context as AppCompatActivity).supportActionBar!!.title = "Statistics ${valgtKommune.kommuneNavn}"
@@ -56,6 +62,7 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
                 Log.d("Added", kommuneListe[pos].kommuneNavn.toString())
             } else {
                 favorittList.remove(kommuneListe[pos])
+                kommuneListe[pos].fav = false
                 Log.d("list size after rm: ", favorittList.size.toString())
                 Log.d("Removed", kommuneListe[pos].kommuneNavn.toString())
             }

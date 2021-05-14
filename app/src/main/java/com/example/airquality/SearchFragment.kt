@@ -89,7 +89,6 @@ class SearchFragment : Fragment() {
                 }
                 for (x in adapterArray) {
                     if (x != null) {
-
                         adapterList.add(x)
                     }
                 }
