@@ -21,7 +21,6 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
         var color: TextView = view.findViewById(R.id.kommune_name)
         var cardView: CardView = view.findViewById(R.id.cardview)
         var weather: TextView = view.findViewById(R.id.weather)
-        //var weather: ImageView = view.findViewById(R.id.weather)
         var aqi: TextView = view.findViewById(R.id.AQIValue)
         var weatherValue: TextView = view.findViewById(R.id.weatherValue)
         var favorittB: CheckBox = view.findViewById(R.id.favorittBoks)
@@ -35,10 +34,9 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
     override fun onBindViewHolder(viewHolder: ViewHolder, pos: Int) {
         viewHolder.name.text = kommuneListe[pos].kommuneNavn
         viewHolder.color.setBackgroundColor(Color.parseColor("#${kommuneListe[pos].fargekode}"))
-        //viewHolder.weather.text = kommuneListe[pos].beskrivelse.toString()
         kommuneListe[pos].ikonID?.let { viewHolder.weather.setBackgroundResource(it) }
         viewHolder.weatherValue.text = kommuneListe[pos].vaer.toString()
-
+        viewHolder.favorittB.isChecked = false
         viewHolder.aqi.text = kommuneListe[pos].aqiVal?.toInt().toString()
 
         if (kommuneListe[pos].aqiVal?.toInt() ?: 0  < 60) {
@@ -58,7 +56,7 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
 
         for(i in favorittList) {
             if (kommuneListe[pos].kommuneNavn == i.kommuneNavn) {
-                kommuneListe[pos].fav = true
+                //kommuneListe[pos].fav = true
                 viewHolder.favorittB.isChecked = true
             }
         }
@@ -73,13 +71,13 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
         }
         viewHolder.favorittB.setOnClickListener {
             if (viewHolder.favorittB.isChecked) {
-                kommuneListe[pos].fav = true
+                //kommuneListe[pos].fav = true
                 favorittList.add(kommuneListe[pos])
                 Log.d("list size after adding:", favorittList.size.toString())
                 Log.d("Added", kommuneListe[pos].kommuneNavn.toString())
             } else {
+                //kommuneListe[pos].fav = false
                 favorittList.remove(kommuneListe[pos])
-                kommuneListe[pos].fav = false
                 Log.d("list size after rm: ", favorittList.size.toString())
                 Log.d("Removed", kommuneListe[pos].kommuneNavn.toString())
             }
