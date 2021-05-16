@@ -55,13 +55,13 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
             viewHolder.statusValue.text = "Horrible"
         }
 
-        viewHolder.favorittB.isChecked = kommuneListe[pos].fav == true
 
-        for(i in favorittList){
-            if(kommuneListe[pos].kommuneNavn == i.kommuneNavn) {
+        for(i in favorittList) {
+            if (kommuneListe[pos].kommuneNavn == i.kommuneNavn) {
                 kommuneListe[pos].fav = true
                 viewHolder.favorittB.isChecked = true
             }
+        }
 
         viewHolder.cardView.setOnClickListener {
             valgtKommune = kommuneListe[pos]
@@ -85,7 +85,6 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
             }
         }
     }
-}
 
     override fun getItemCount(): Int {
         return kommuneListe.size
