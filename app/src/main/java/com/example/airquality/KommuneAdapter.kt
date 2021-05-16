@@ -53,6 +53,9 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
         } else if (kommuneListe[pos].aqiVal?.toInt() ?: 0  > 400) {
             viewHolder.status.setBackgroundResource(R.drawable.ic_baseline_sick_24_dead)
             viewHolder.statusValue.text = "Horrible"
+        }
+
+        viewHolder.favorittB.isChecked = kommuneListe[pos].fav == true
 
         for(i in favorittList){
             if(kommuneListe[pos].kommuneNavn == i.kommuneNavn) {
@@ -82,7 +85,7 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
             }
         }
     }
-}}
+}
 
     override fun getItemCount(): Int {
         return kommuneListe.size
