@@ -138,7 +138,7 @@ class SearchFragment : Fragment() {
         updateRecycler(searchList)
         // If query is not in list
         if(searchList.size <= 0){
-            val toast: Toast = Toast.makeText(this.context, "No entries containing '$query' found", Toast.LENGTH_SHORT)
+            val toast: Toast = Toast.makeText(this.context, "Kommune med navn eller som inneholder '$query' finnes ikke", Toast.LENGTH_SHORT)
             toast.setGravity(Gravity.CENTER, 0, 0)
             toast.show()
         }

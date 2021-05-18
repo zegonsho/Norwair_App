@@ -30,7 +30,7 @@ class InfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val spinner: Spinner = viewOfLayout.findViewById(R.id.spinnerInfo)
 
         spinner.onItemSelectedListener = this
-        val adapter = arrayOf("CO", "NO", "NO2", "NOx", "03", "PM...", "SO2")
+        val adapter = arrayOf("CO", "NO", "NO2", "NOx", "03", "PM(1/2.5/10)", "SO2")
         val aa = ArrayAdapter(this.context!!, android.R.layout.simple_spinner_item, adapter)
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = aa
@@ -63,7 +63,7 @@ class InfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
             title.text = getString(R.string.O3)
             desc.text = getString(R.string.O3desc)
 
-        } else if (unit == "PM...") {
+        } else if (unit == "PM(1/2.5/10)") {
             title.text = getString(R.string.PM)
             desc.text = getString(R.string.PMdesc)
 
@@ -74,7 +74,9 @@ class InfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {}
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+    }
 
     companion object {
         // Method to create a new instance of this fragment
