@@ -41,9 +41,9 @@ class SearchFragment : Fragment() {
             try {
                 // Create recyclerview and adapter
                 stasjonArray = gson.fromJson(Fuel.get(niluStasjonsdataPM10).awaitString(), Array<Stasjon>::class.java)
-                Log.d("TEST1: ", stasjonArray.size.toString())
+                //Log.d("TEST1: ", stasjonArray.size.toString())
                 areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
-                Log.d("TEST2: ", areasArray.size.toString())
+                //Log.d("TEST2: ", areasArray.size.toString())
                 var vaer = ""
                 var vaerBeskrivelse = ""
                 var pm10Max = 0f
@@ -74,7 +74,7 @@ class SearchFragment : Fragment() {
                             val res: Resources = resources
                             val mDrawableName = vaerBeskrivelse
                             val resID: Int = res.getIdentifier(mDrawableName, "raw", activity?.packageName)
-                            Log.d("RESOURCES ID C", "onCreateView: $resID")
+                            //Log.d("RESOURCES ID C", "onCreateView: $resID")
                             val temp = Adapter(areasArray[i].area, stasjonMedHoyestePM10Maaling.color, vaer, vaerBeskrivelse, resID, stasjonMedHoyestePM10Maaling.value, false)
                             //val test = resources.getIdentifier(vaerBeskrivelse, "drawable")
                             //Log.d("RESOURCES ID C", "onCreateView: $test")
@@ -138,7 +138,7 @@ class SearchFragment : Fragment() {
         updateRecycler(searchList)
         // If query is not in list
         if(searchList.size <= 0){
-            val toast: Toast = Toast.makeText(this.context, "Kommune med navn '$query' finnes ikke", Toast.LENGTH_SHORT)
+            val toast: Toast = Toast.makeText(this.context, "Kommune med navn eller som inneholder '$query' finnes ikke", Toast.LENGTH_SHORT)
             toast.setGravity(Gravity.CENTER, 0, 0)
             toast.show()
         }
