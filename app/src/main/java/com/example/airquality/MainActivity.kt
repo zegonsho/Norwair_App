@@ -14,12 +14,12 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_search -> {
-                    supportActionBar!!.title = "Search"
+                    supportActionBar!!.title = "Søk"
                     openFragment(SearchFragment.newInstance())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_fav -> {
-                    supportActionBar!!.title = "Favorites"
+                    supportActionBar!!.title = "Favoritter"
                     openFragment(FavFragment.newInstance())
                     return@OnNavigationItemSelectedListener true
                 }
