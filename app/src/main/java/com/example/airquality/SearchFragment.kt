@@ -2,9 +2,7 @@ package com.example.airquality
 
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -37,13 +35,10 @@ class SearchFragment : Fragment() {
         // Create air quality data
         val gson = Gson()
         CoroutineScope(Dispatchers.IO).launch {
-            Log.d("first: ", "PASSED")
             try {
                 // Create recyclerview and adapter
                 stasjonArray = gson.fromJson(Fuel.get(niluStasjonsdataPM10).awaitString(), Array<Stasjon>::class.java)
-                //Log.d("TEST1: ", stasjonArray.size.toString())
                 areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
-                //Log.d("TEST2: ", areasArray.size.toString())
                 var vaer = ""
                 var vaerBeskrivelse = ""
                 var pm10Max = 0f
@@ -70,18 +65,10 @@ class SearchFragment : Fragment() {
                                 pm10Max = dataStasjon.value?.toFloat() ?: 0f
                                 stasjonMedHoyestePM10Maaling = dataStasjon
                             }
-
                             val res: Resources = resources
                             val mDrawableName = vaerBeskrivelse
                             val resID: Int = res.getIdentifier(mDrawableName, "raw", activity?.packageName)
-                            //Log.d("RESOURCES ID C", "onCreateView: $resID")
                             val temp = Adapter(areasArray[i].area, stasjonMedHoyestePM10Maaling.color, vaer, vaerBeskrivelse, resID, stasjonMedHoyestePM10Maaling.value, false)
-                            //val test = resources.getIdentifier(vaerBeskrivelse, "drawable")
-                            //Log.d("RESOURCES ID C", "onCreateView: $test")
-
-
-                            //val drawable: Drawable = res.getDrawable(resID)
-                            //icon.setImageDrawable(drawable)
                             adapterArray[i] = temp
                         }
                     }
@@ -95,7 +82,9 @@ class SearchFragment : Fragment() {
                 }
                 updateRecycler(adapterList)
             } catch (e: Exception) {
-                Log.e("Error ", e.message.toString())
+                val toast: Toast = Toast.makeText(context, "Error: $e", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER, 0, 0)
+                toast.show()
             }
         }
         // Create searchview and listener
@@ -120,7 +109,6 @@ class SearchFragment : Fragment() {
     }
     // Search function
     private fun searchCounty(query: String, set: MutableSet<Adapter>) {
-        //var searchList = mutableListOf<Adapter>()
         val searchList = mutableSetOf<Adapter>()
         // Adds counties that start with the query to the searchList
         for (i in set) {

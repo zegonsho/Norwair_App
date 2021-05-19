@@ -22,6 +22,16 @@
             app:layout_constraintTop_toBottomOf="@+id/search"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="0dp" />
-    </FrameLayout>
 
+        <TextView
+            android:id="@+id/check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingen kommuner satt som favoritt ennå"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:textAlignment="center"/>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

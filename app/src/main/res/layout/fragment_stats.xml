@@ -15,8 +15,7 @@
         android:textColor="@color/black"
         android:fontFamily="@font/oxygen"
         android:textAllCaps="true"
-        android:textSize="32sp"
-        />
+        android:textSize="32sp" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -34,8 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
-                />
+                android:layout_marginTop="10dp" />
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barchart"
@@ -65,8 +63,8 @@
                 android:text="\t\tPM10:"
                 android:textColor="@color/black"
                 android:layout_alignTop="@+id/risikoverdier"
-                android:layout_marginTop="60dp"
-                />
+                android:layout_marginTop="60dp" />
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,7 +93,6 @@
                     android:text="400" />
             </RelativeLayout>
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,8 +100,7 @@
                 android:text="\t\tPM2.5:"
                 android:textColor="@color/black"
                 android:layout_alignTop="@+id/pm10"
-                android:layout_marginTop="50dp"
-                />
+                android:layout_marginTop="50dp" />
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,8 +136,7 @@
                 android:text="\t\tPM1:"
                 android:textColor="@color/black"
                 android:layout_alignTop="@+id/pm2.5"
-                android:layout_marginTop="50dp"
-                />
+                android:layout_marginTop="50dp" />
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -177,8 +172,7 @@
                 android:text="\t\tCO:"
                 android:textColor="@color/black"
                 android:layout_alignTop="@+id/pm1"
-                android:layout_marginTop="50dp"
-                />
+                android:layout_marginTop="50dp" />
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -214,8 +208,8 @@
                 android:text="\t\tNO:"
                 android:textColor="@color/black"
                 android:layout_alignTop="@+id/co"
-                android:layout_marginTop="50dp"
-                />
+                android:layout_marginTop="50dp" />
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -251,8 +245,8 @@
                 android:text="\t\tNO2:"
                 android:textColor="@color/black"
                 android:layout_alignTop="@+id/no"
-                android:layout_marginTop="50dp"
-                />
+                android:layout_marginTop="50dp" />
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -288,8 +282,8 @@
                 android:text="\t\tNOx:"
                 android:textColor="@color/black"
                 android:layout_alignTop="@+id/no2"
-                android:layout_marginTop="50dp"
-                />
+                android:layout_marginTop="50dp" />
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -325,8 +319,8 @@
                 android:text="\t\tO3:"
                 android:textColor="@color/black"
                 android:layout_alignTop="@+id/nox"
-                android:layout_marginTop="50dp"
-                />
+                android:layout_marginTop="50dp" />
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -404,8 +398,8 @@
                     android:layout_width="75dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="75dp"
-                    android:background="@color/green"
-                    />
+                    android:background="@color/green" />
+
                 <View
                     android:id="@+id/pm10yellow"
                     android:layout_width="75dp"
@@ -413,8 +407,8 @@
                     android:layout_alignTop="@+id/pm10green"
                     android:layout_alignLeft="@+id/pm10green"
                     android:layout_marginStart="75dp"
-                    android:background="@color/yellow"
-                    />
+                    android:background="@color/yellow" />
+
                 <View
                     android:id="@+id/pm10red"
                     android:layout_width="75dp"
@@ -422,10 +416,8 @@
                     android:layout_alignTop="@+id/pm10yellow"
                     android:layout_alignLeft="@+id/pm10yellow"
                     android:layout_marginStart="75dp"
-                    android:background="@color/red"
-                    />
+                    android:background="@color/red" />
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -438,8 +430,8 @@
                     android:layout_width="75dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="75dp"
-                    android:background="@color/green"
-                    />
+                    android:background="@color/green" />
+
                 <View
                     android:id="@+id/pm2.5yellow"
                     android:layout_width="75dp"
@@ -447,8 +439,8 @@
                     android:layout_alignTop="@+id/pm2.5green"
                     android:layout_alignLeft="@+id/pm2.5green"
                     android:layout_marginStart="75dp"
-                    android:background="@color/yellow"
-                    />
+                    android:background="@color/yellow" />
+
                 <View
                     android:id="@+id/pm2.5red"
                     android:layout_width="75dp"
@@ -456,10 +448,8 @@
                     android:layout_alignTop="@+id/pm2.5yellow"
                     android:layout_alignLeft="@+id/pm2.5yellow"
                     android:layout_marginStart="75dp"
-                    android:background="@color/red"
-                    />
+                    android:background="@color/red" />
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -472,8 +462,8 @@
                     android:layout_width="75dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="75dp"
-                    android:background="@color/green"
-                    />
+                    android:background="@color/green" />
+
                 <View
                     android:id="@+id/pm1yellow"
                     android:layout_width="75dp"
@@ -481,8 +471,8 @@
                     android:layout_alignTop="@+id/pm1green"
                     android:layout_alignLeft="@+id/pm1green"
                     android:layout_marginStart="75dp"
-                    android:background="@color/yellow"
-                    />
+                    android:background="@color/yellow" />
+
                 <View
                     android:id="@+id/pm1red"
                     android:layout_width="75dp"
@@ -490,10 +480,8 @@
                     android:layout_alignTop="@+id/pm1yellow"
                     android:layout_alignLeft="@+id/pm1yellow"
                     android:layout_marginStart="75dp"
-                    android:background="@color/red"
-                    />
+                    android:background="@color/red" />
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -506,8 +494,8 @@
                     android:layout_width="75dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="75dp"
-                    android:background="@color/green"
-                    />
+                    android:background="@color/green" />
+
                 <View
                     android:id="@+id/coyellow"
                     android:layout_width="75dp"
@@ -515,8 +503,8 @@
                     android:layout_alignTop="@+id/cogreen"
                     android:layout_alignLeft="@+id/cogreen"
                     android:layout_marginStart="75dp"
-                    android:background="@color/yellow"
-                    />
+                    android:background="@color/yellow" />
+
                 <View
                     android:id="@+id/cored"
                     android:layout_width="75dp"
@@ -524,10 +512,8 @@
                     android:layout_alignTop="@+id/coyellow"
                     android:layout_alignLeft="@+id/coyellow"
                     android:layout_marginStart="75dp"
-                    android:background="@color/red"
-                    />
+                    android:background="@color/red" />
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -540,8 +526,8 @@
                     android:layout_width="75dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="75dp"
-                    android:background="@color/green"
-                    />
+                    android:background="@color/green" />
+
                 <View
                     android:id="@+id/noyellow"
                     android:layout_width="75dp"
@@ -549,8 +535,8 @@
                     android:layout_alignTop="@+id/nogreen"
                     android:layout_alignLeft="@+id/nogreen"
                     android:layout_marginStart="75dp"
-                    android:background="@color/yellow"
-                    />
+                    android:background="@color/yellow" />
+
                 <View
                     android:id="@+id/nored"
                     android:layout_width="75dp"
@@ -558,10 +544,8 @@
                     android:layout_alignTop="@+id/noyellow"
                     android:layout_alignLeft="@+id/noyellow"
                     android:layout_marginStart="75dp"
-                    android:background="@color/red"
-                    />
+                    android:background="@color/red" />
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -574,8 +558,8 @@
                     android:layout_width="75dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="75dp"
-                    android:background="@color/green"
-                    />
+                    android:background="@color/green" />
+
                 <View
                     android:id="@+id/no2yellow"
                     android:layout_width="75dp"
@@ -583,8 +567,8 @@
                     android:layout_alignTop="@+id/no2green"
                     android:layout_alignLeft="@+id/no2green"
                     android:layout_marginStart="75dp"
-                    android:background="@color/yellow"
-                    />
+                    android:background="@color/yellow" />
+
                 <View
                     android:id="@+id/no2red"
                     android:layout_width="75dp"
@@ -592,10 +576,8 @@
                     android:layout_alignTop="@+id/no2yellow"
                     android:layout_alignLeft="@+id/no2yellow"
                     android:layout_marginStart="75dp"
-                    android:background="@color/red"
-                    />
+                    android:background="@color/red" />
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -608,8 +590,8 @@
                     android:layout_width="75dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="75dp"
-                    android:background="@color/green"
-                    />
+                    android:background="@color/green" />
+
                 <View
                     android:id="@+id/noxyellow"
                     android:layout_width="75dp"
@@ -617,8 +599,8 @@
                     android:layout_alignTop="@+id/noxgreen"
                     android:layout_alignLeft="@+id/noxgreen"
                     android:layout_marginStart="75dp"
-                    android:background="@color/yellow"
-                    />
+                    android:background="@color/yellow" />
+
                 <View
                     android:id="@+id/noxred"
                     android:layout_width="75dp"
@@ -626,10 +608,8 @@
                     android:layout_alignTop="@+id/noxyellow"
                     android:layout_alignLeft="@+id/noxyellow"
                     android:layout_marginStart="75dp"
-                    android:background="@color/red"
-                    />
+                    android:background="@color/red" />
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -642,8 +622,8 @@
                     android:layout_width="75dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="75dp"
-                    android:background="@color/green"
-                    />
+                    android:background="@color/green" />
+
                 <View
                     android:id="@+id/o3yellow"
                     android:layout_width="75dp"
@@ -651,8 +631,8 @@
                     android:layout_alignTop="@+id/o3green"
                     android:layout_alignLeft="@+id/o3green"
                     android:layout_marginStart="75dp"
-                    android:background="@color/yellow"
-                    />
+                    android:background="@color/yellow" />
+
                 <View
                     android:id="@+id/o3red"
                     android:layout_width="75dp"
@@ -660,10 +640,8 @@
                     android:layout_alignTop="@+id/o3yellow"
                     android:layout_alignLeft="@+id/o3yellow"
                     android:layout_marginStart="75dp"
-                    android:background="@color/red"
-                    />
+                    android:background="@color/red" />
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:id="@+id/RelativeLayoutLast"
@@ -678,8 +656,8 @@
                     android:layout_width="75dp"
                     android:layout_height="5dp"
                     android:layout_marginStart="75dp"
-                    android:background="@color/green"
-                    />
+                    android:background="@color/green" />
+
                 <View
                     android:id="@+id/so2yellow"
                     android:layout_width="75dp"
@@ -687,8 +665,8 @@
                     android:layout_alignTop="@+id/so2green"
                     android:layout_alignLeft="@+id/so2green"
                     android:layout_marginStart="75dp"
-                    android:background="@color/yellow"
-                    />
+                    android:background="@color/yellow" />
+
                 <View
                     android:id="@+id/so2red"
                     android:layout_width="75dp"
@@ -696,8 +674,7 @@
                     android:layout_alignTop="@+id/so2yellow"
                     android:layout_alignLeft="@+id/so2yellow"
                     android:layout_marginStart="75dp"
-                    android:background="@color/red"
-                    />
+                    android:background="@color/red" />
             </RelativeLayout>
 
             <androidx.cardview.widget.CardView
@@ -749,7 +726,7 @@
                 android:textSize="24sp"
                 android:layout_alignTop="@+id/cardview"
                 android:layout_marginTop="140dp"
-                android:layout_marginHorizontal="15dp"/>
+                android:layout_marginHorizontal="15dp" />
 
             <View
                 android:id="@+id/totalVurdering"
@@ -757,8 +734,7 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="30dp"
                 android:layout_alignTop="@+id/vurdering"
-                android:layout_marginBottom="150dp"
-                />
+                android:layout_marginBottom="150dp" />
         </RelativeLayout>
     </ScrollView>
 

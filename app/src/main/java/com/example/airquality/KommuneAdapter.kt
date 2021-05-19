@@ -2,12 +2,10 @@ package com.example.airquality
 
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -53,10 +51,8 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
             viewHolder.statusValue.text = "Horrible"
         }
 
-
         for(i in favorittList) {
             if (kommuneListe[pos].kommuneNavn == i.kommuneNavn) {
-                //kommuneListe[pos].fav = true
                 viewHolder.favorittB.isChecked = true
             }
         }
@@ -71,15 +67,9 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
         }
         viewHolder.favorittB.setOnClickListener {
             if (viewHolder.favorittB.isChecked) {
-                //kommuneListe[pos].fav = true
                 favorittList.add(kommuneListe[pos])
-                Log.d("list size after adding:", favorittList.size.toString())
-                Log.d("Added", kommuneListe[pos].kommuneNavn.toString())
             } else {
-                //kommuneListe[pos].fav = false
                 favorittList.remove(kommuneListe[pos])
-                Log.d("list size after rm: ", favorittList.size.toString())
-                Log.d("Removed", kommuneListe[pos].kommuneNavn.toString())
             }
         }
     }

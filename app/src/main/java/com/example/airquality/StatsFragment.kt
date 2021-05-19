@@ -40,9 +40,6 @@ class StatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         stasjonsNavn = mutableListOf()
         lateinit var stasjonerValgtKommune: Array<StasjonerValgtKommune>
 
-        //Bar Chart
-        //https://api.nilu.no/obs/utd?areas={kommune}&components={aqis}
-
         //Spinner
         val lookupStations = "https://api.nilu.no/lookup/stations?area="
 

@@ -30,5 +30,4 @@
             app:menu="@menu/bottom_nav_menu"
             tools:layout_editor_absoluteX="0dp" />
     </FrameLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

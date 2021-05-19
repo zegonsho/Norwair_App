@@ -17,14 +17,11 @@
         android:layout_alignTop="@+id/delimeter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        >
+        android:layout_marginTop="50dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/valg"
@@ -34,8 +31,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_marginHorizontal="20dp"
-                />
+                android:layout_marginHorizontal="20dp" />
 
            <Spinner
                 android:id="@+id/spinnerInfo"
@@ -46,8 +42,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_alignTop="@+id/valg"
                 android:spinnerMode="dropdown"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/unit"
@@ -59,8 +54,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/description"
@@ -71,8 +65,7 @@
                 android:layout_alignTop="@+id/unit"
                 android:layout_marginTop="40dp"
                 android:layout_marginHorizontal="20dp"
-                android:textColor="@color/black"
-                 />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/FAQ"
@@ -84,8 +77,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/description"
                 android:layout_marginTop="150dp"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/question1"
@@ -98,8 +90,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignTop="@+id/FAQ"
                 android:layout_marginTop="40dp"
-                android:textColor="@color/black"
-                 />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/answer1"
@@ -111,9 +102,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginHorizontal="20dp"
-                android:textColor="@color/black"
-
-                />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/question2"
@@ -126,8 +115,7 @@
                 android:textStyle="bold"
                 android:layout_alignTop="@+id/answer1"
                 android:layout_marginTop="100dp"
-                android:textColor="@color/black"
-            />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/answer2"
@@ -139,8 +127,7 @@
                 android:layout_alignTop="@+id/question2"
                 android:layout_marginTop="25dp"
                 android:textColor="@color/black"
-                android:layout_centerHorizontal="true"
-                 />
+                android:layout_centerHorizontal="true" />
 
             <TextView
                 android:id="@+id/question3"
@@ -153,8 +140,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/answer2"
                 android:layout_marginTop="100dp"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_centerHorizontal="true" />
 
             <TextView
                 android:id="@+id/answer3"
@@ -167,8 +153,7 @@
                 android:layout_alignTop="@+id/question3"
                 android:layout_marginTop="25dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="150dp"
-                />
+                android:layout_marginBottom="150dp" />
 
 
             <TextView
@@ -182,8 +167,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/answer3"
                 android:layout_marginTop="100dp"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_centerHorizontal="true" />
 
             <TextView
                 android:id="@+id/answer4"
@@ -196,8 +180,7 @@
                 android:layout_marginTop="25dp"
                 android:textColor="@color/black"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="150dp"
-                />
+                android:layout_marginBottom="150dp" />
 
             <TextView
                 android:id="@+id/question5"
@@ -210,8 +193,7 @@
                 android:layout_alignTop="@+id/answer4"
                 android:layout_marginTop="125dp"
                 android:textColor="@color/black"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_centerHorizontal="true" />
 
             <TextView
                 android:id="@+id/answer5"
@@ -224,12 +206,7 @@
                 android:layout_marginTop="40dp"
                 android:textColor="@color/black"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="150dp"
-                />
-
+                android:layout_marginBottom="150dp" />
         </RelativeLayout>
-
     </ScrollView>
-
-
 </RelativeLayout>

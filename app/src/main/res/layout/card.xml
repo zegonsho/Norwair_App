@@ -101,8 +101,6 @@
             android:layout_alignParentEnd="true"
             android:button="@null"
             android:drawablePadding="20dp"
-            android:background="@drawable/selector_favoritt_item"
-            />
-
+            android:background="@drawable/selector_favoritt_item" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

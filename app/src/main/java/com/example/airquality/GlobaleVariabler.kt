@@ -3,10 +3,8 @@ package com.example.airquality
 import com.github.mikephil.charting.data.BarEntry
 
 //Main
-
 var adapterList = mutableSetOf<Adapter>()
 val favorittList = mutableListOf<Adapter>()
-//val favorittList = mutableListOf<Adapter>()
 
 //API
 lateinit var valgtKommune: Adapter
