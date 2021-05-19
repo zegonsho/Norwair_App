@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/transparent"
+            android:background="@drawable/bottom_nav_selector"
             app:itemBackground="@drawable/bottom_nav_selector"
             app:itemIconTint="@color/color_selector"
             app:itemTextColor="@color/color_selector"
