@@ -18,13 +18,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             >
 
 
@@ -35,33 +33,34 @@
                 android:text="Velg luftpartikkel under:"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-
-
-
-            />
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="20dp"
+                />
 
            <Spinner
                 android:id="@+id/spinnerInfo"
-                android:layout_width="379dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#00000000"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_alignTop="@+id/valg"
-
+                android:spinnerMode="dropdown"
+                android:textColor="@color/black"
                 />
 
             <TextView
                 android:id="@+id/unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="45dp"
                 android:layout_alignTop="@+id/spinnerInfo"
                 android:text="unit"
+                android:layout_marginHorizontal="20dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-            />
+                android:textColor="@color/black"
+                />
 
             <TextView
                 android:id="@+id/description"
@@ -71,8 +70,8 @@
                 android:textSize="16sp"
                 android:layout_alignTop="@+id/unit"
                 android:layout_marginTop="40dp"
-                android:layout_centerHorizontal="true"
-                android:textAlignment="center"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="@color/black"
                  />
 
             <TextView
@@ -82,9 +81,10 @@
                 android:text="@string/FAQ"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/description"
                 android:layout_marginTop="150dp"
+                android:textColor="@color/black"
                 />
 
             <TextView
@@ -94,10 +94,11 @@
                 android:text="@string/q1String"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:layout_marginHorizontal="20dp"
                 android:layout_centerHorizontal="true"
-                android:textAlignment="center"
                 android:layout_alignTop="@+id/FAQ"
                 android:layout_marginTop="40dp"
+                android:textColor="@color/black"
                  />
 
             <TextView
@@ -109,7 +110,9 @@
                 android:layout_alignTop="@+id/question1"
                 android:layout_marginTop="25dp"
                 android:layout_centerHorizontal="true"
-                android:textAlignment="center"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="@color/black"
+
                 />
 
             <TextView
@@ -117,25 +120,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/q2String"
+                android:layout_marginHorizontal="20dp"
                 android:layout_centerHorizontal="true"
-                android:textAlignment="center"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_alignTop="@+id/answer1"
                 android:layout_marginTop="100dp"
-
-
+                android:textColor="@color/black"
             />
 
             <TextView
-                 android:id="@+id/answer2"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:text="@string/a2String"
-                 android:textSize="16sp"
+                android:id="@+id/answer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/a2String"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/question2"
                 android:layout_marginTop="25dp"
-                android:textAlignment="center"
+                android:textColor="@color/black"
                 android:layout_centerHorizontal="true"
                  />
 
@@ -145,12 +148,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/q3String"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
+                android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/answer2"
                 android:layout_marginTop="100dp"
                 android:layout_centerHorizontal="true"
-                android:textAlignment="center"
-                  />
+                />
 
             <TextView
                 android:id="@+id/answer3"
@@ -158,12 +162,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/a3String"
                 android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/question3"
                 android:layout_marginTop="25dp"
-                android:textAlignment="center"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="150dp"
-            />
+                />
 
 
             <TextView
@@ -172,11 +177,12 @@
                 android:layout_height="match_parent"
                 android:text="@string/q4String"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
+                android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/answer3"
                 android:layout_marginTop="100dp"
                 android:layout_centerHorizontal="true"
-                android:textAlignment="center"
                 />
 
             <TextView
@@ -185,9 +191,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/a4String"
                 android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/question4"
                 android:layout_marginTop="25dp"
-                android:textAlignment="center"
+                android:textColor="@color/black"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="150dp"
                 />
@@ -199,10 +206,11 @@
                 android:text="@string/q5String"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/answer4"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="125dp"
+                android:textColor="@color/black"
                 android:layout_centerHorizontal="true"
-                android:textAlignment="center"
                 />
 
             <TextView
@@ -211,9 +219,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/a5String"
                 android:textSize="16sp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/question5"
-                android:layout_marginTop="25dp"
-                android:textAlignment="center"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="150dp"
                 />

@@ -33,7 +33,7 @@ class StatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val totalVurdering: View = viewOfLayout.findViewById(R.id.totalVurdering)
 
         tittel.text = valgtKommune.kommuneNavn
-        totalVurdering.setBackgroundColor(Color.parseColor("#" + valgtKommune.fargekode.toString()))
+        totalVurdering.setBackgroundColor(Color.parseColor("#BF" + valgtKommune.fargekode.toString()))
         xValues = ArrayList()
         barEntries = ArrayList()
         resultatAqis = mutableListOf()

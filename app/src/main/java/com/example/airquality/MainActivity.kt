@@ -8,30 +8,31 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_AirQuality)
         setContentView(R.layout.activity_main)
 
         val bottomNavigation : BottomNavigationView = findViewById(R.id.bottom_navigation) //might have to be initalized before
         bottomNavigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_search -> {
-                    supportActionBar!!.title = "Søk"
+                    supportActionBar!!.title = "SØK"
                     openFragment(SearchFragment.newInstance())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_fav -> {
-                    supportActionBar!!.title = "Favoritter"
+                    supportActionBar!!.title = "FAVORITTER"
                     openFragment(FavFragment.newInstance())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_info -> {
-                    supportActionBar!!.title = "Info"
+                    supportActionBar!!.title = "INFO"
                     openFragment(InfoFragment.newInstance())
                     return@OnNavigationItemSelectedListener true
                 }
             }
             false
         })
-        supportActionBar!!.title = "Search"
+        supportActionBar!!.title = "SØK"
         openFragment(SearchFragment.newInstance())
     }
     // Fragment function

@@ -33,23 +33,23 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, pos: Int) {
         viewHolder.name.text = kommuneListe[pos].kommuneNavn
-        viewHolder.color.setBackgroundColor(Color.parseColor("#${kommuneListe[pos].fargekode}"))
+        viewHolder.color.setBackgroundColor(Color.parseColor("#BF${kommuneListe[pos].fargekode}"))
         kommuneListe[pos].ikonID?.let { viewHolder.weather.setBackgroundResource(it) }
         viewHolder.weatherValue.text = kommuneListe[pos].vaer.toString()
         viewHolder.favorittB.isChecked = false
         viewHolder.aqi.text = kommuneListe[pos].aqiVal?.toInt().toString()
 
         if (kommuneListe[pos].aqiVal?.toInt() ?: 0  < 60) {
-            viewHolder.status.setBackgroundResource(R.drawable.ic_baseline_emoji_emotions_24_good)
+            viewHolder.status.setBackgroundResource(R.drawable.ic_outline_sentiment_satisfied_24)
             viewHolder.statusValue.text = "Good"
         } else if ((kommuneListe[pos].aqiVal?.toInt() ?: 0  > 60) && (kommuneListe[pos].aqiVal?.toInt() ?: 0  < 120)) {
-            viewHolder.status.setBackgroundResource(R.drawable.ic_baseline_sentiment_satisfied_24_moderate)
+            viewHolder.status.setBackgroundResource(R.drawable.ic_outline_sentiment_neutral_24)
             viewHolder.statusValue.text = "Moderate"
         } else if ((kommuneListe[pos].aqiVal?.toInt() ?: 0  > 120) && (kommuneListe[pos].aqiVal?.toInt() ?: 0  < 400)) {
             viewHolder.status.setBackgroundResource(R.drawable.ic_baseline_sentiment_very_dissatisfied_24_bad)
             viewHolder.statusValue.text = "Bad"
         } else if (kommuneListe[pos].aqiVal?.toInt() ?: 0  > 400) {
-            viewHolder.status.setBackgroundResource(R.drawable.ic_baseline_sick_24_dead)
+            viewHolder.status.setBackgroundResource(R.drawable.ic_outline_sentiment_very_dissatisfied_24)
             viewHolder.statusValue.text = "Horrible"
         }
 
@@ -63,7 +63,7 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
 
         viewHolder.cardView.setOnClickListener {
             valgtKommune = kommuneListe[pos]
-            (context as AppCompatActivity).supportActionBar!!.title = "Statistikk ${valgtKommune.kommuneNavn}"
+            (context as AppCompatActivity).supportActionBar!!.title = "STATISTIKK"// ${(valgtKommune.kommuneNavn)?.toUpperCase()}"
             val transaction = context.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container, StatsFragment.newInstance())
             transaction.addToBackStack(null)
