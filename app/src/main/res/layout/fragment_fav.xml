@@ -27,7 +27,7 @@
             android:id="@+id/check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ingen kommuner satt\n som favoritt ennå"
+            android:text="@string/empty"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#8D000000"
