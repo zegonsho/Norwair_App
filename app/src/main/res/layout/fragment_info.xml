@@ -52,7 +52,7 @@
                 android:layout_alignTop="@+id/spinnerInfo"
                 android:text="unit"
                 android:layout_marginHorizontal="20dp"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/oxygen"
                 android:textColor="@color/dark_grey" />
@@ -193,7 +193,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/q5String"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginHorizontal="20dp"
                 android:layout_alignTop="@+id/answer4"
