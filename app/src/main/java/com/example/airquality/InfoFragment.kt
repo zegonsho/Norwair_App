@@ -29,6 +29,7 @@ class InfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
         viewOfLayout = inflater.inflate(R.layout.fragment_info, container, false)
         val spinner: Spinner = viewOfLayout.findViewById(R.id.spinnerInfo)
 
+        //lager spinner
         spinner.onItemSelectedListener = this
         val adapter = arrayOf("CO", "NO", "NO2", "NOx", "03", "PM(1/2.5/10)", "SO2")
         val aa = ArrayAdapter(this.context!!, android.R.layout.simple_spinner_item, adapter)
@@ -43,6 +44,7 @@ class InfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val title: TextView = viewOfLayout.findViewById(R.id.unit)
         val desc: TextView = viewOfLayout.findViewById(R.id.description)
         val unit = spinner.selectedItem.toString()
+
         if (unit == "CO") {
             title.text = getString(R.string.CO2)
             desc.text = getString(R.string.CO2desc)

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".StatsFragment">
 
     <TextView
@@ -12,6 +13,8 @@
         android:layout_centerHorizontal="true"
         android:text="Kommune"
         android:textColor="@color/black"
+        android:fontFamily="@font/oxygen"
+        android:textAllCaps="true"
         android:textSize="32sp"
         />
 
@@ -28,9 +31,10 @@
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
                 />
 
             <com.github.mikephil.charting.charts.BarChart
@@ -38,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_alignTop="@+id/spinner"
-                android:layout_marginTop="75dp"
+                android:layout_marginTop="60dp"
                 />
 
             <TextView
@@ -46,8 +50,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Risikoverdier:"
+                android:fontFamily="@font/oxygen"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="15dp"
                 android:layout_alignTop="@+id/barchart"
                 android:layout_marginTop="220dp"
                 android:textSize="24sp"/>
@@ -56,9 +62,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pm10"
-                android:text="PM10:"
+                android:text="\t\tPM10:"
+                android:textColor="@color/black"
                 android:layout_alignTop="@+id/risikoverdier"
-                android:layout_marginTop="75dp"
+                android:layout_marginTop="60dp"
                 />
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -93,7 +100,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pm2.5"
-                android:text="PM2.5:"
+                android:text="\t\tPM2.5:"
+                android:textColor="@color/black"
                 android:layout_alignTop="@+id/pm10"
                 android:layout_marginTop="50dp"
                 />
@@ -129,7 +137,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pm1"
-                android:text="PM1:"
+                android:text="\t\tPM1:"
+                android:textColor="@color/black"
                 android:layout_alignTop="@+id/pm2.5"
                 android:layout_marginTop="50dp"
                 />
@@ -165,7 +174,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/co"
-                android:text="CO:"
+                android:text="\t\tCO:"
+                android:textColor="@color/black"
                 android:layout_alignTop="@+id/pm1"
                 android:layout_marginTop="50dp"
                 />
@@ -201,7 +211,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/no"
-                android:text="NO:"
+                android:text="\t\tNO:"
+                android:textColor="@color/black"
                 android:layout_alignTop="@+id/co"
                 android:layout_marginTop="50dp"
                 />
@@ -237,7 +248,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/no2"
-                android:text="NO2:"
+                android:text="\t\tNO2:"
+                android:textColor="@color/black"
                 android:layout_alignTop="@+id/no"
                 android:layout_marginTop="50dp"
                 />
@@ -273,7 +285,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/nox"
-                android:text="NOx:"
+                android:text="\t\tNOx:"
+                android:textColor="@color/black"
                 android:layout_alignTop="@+id/no2"
                 android:layout_marginTop="50dp"
                 />
@@ -309,7 +322,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/o3"
-                android:text="O3:"
+                android:text="\t\tO3:"
+                android:textColor="@color/black"
                 android:layout_alignTop="@+id/nox"
                 android:layout_marginTop="50dp"
                 />
@@ -345,7 +359,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/so2"
-                android:text="SO2:"
+                android:text="\t\tSO2:"
+                android:textColor="@color/black"
                 android:layout_alignTop="@+id/o3"
                 android:layout_marginTop="50dp"
                 />
@@ -689,23 +704,26 @@
                 android:id="@+id/cardview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:cardBackgroundColor="#00000000"
+                app:cardElevation="0dp"
                 android:layout_alignTop="@+id/RelativeLayoutLast"
                 android:layout_marginTop="50dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="250dp" >
+                    android:layout_height="144dp">
 
                     <TextView
                         android:id="@+id/anbefalinger"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Anbefalinger:"
-                        android:textColor="@color/black"
-                        android:gravity="center"
-                        android:textSize="24sp"
                         android:layout_centerHorizontal="true"
-                        />
+                        android:fontFamily="@font/oxygen"
+                        android:layout_marginHorizontal="15dp"
+                        android:text="Anbefalinger:"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="24sp" />
 
                     <TextView
                         android:id="@+id/anbefaling"
@@ -713,12 +731,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/anbefalinger"
                         android:layout_marginTop="50dp"
-                        android:textSize="16sp"
-                        android:textAlignment="center"
-                        android:layout_centerHorizontal="true"
-                        android:text="Anbefaling"/>
-
-
+                        android:text="Anbefaling"
+                        android:textColor="@color/black"
+                        android:layout_marginHorizontal="15dp"
+                        android:textSize="16sp" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -726,12 +742,14 @@
                 android:id="@+id/vurdering"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kommunens vurdering alt i alt:"
+                android:text="totalvurdering:"
+                android:fontFamily="@font/oxygen"
+                android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:layout_alignTop="@+id/cardview"
-                android:layout_marginTop="250dp"
-                android:layout_centerHorizontal="true"/>
+                android:layout_marginTop="140dp"
+                android:layout_marginHorizontal="15dp"/>
 
             <View
                 android:id="@+id/totalVurdering"
