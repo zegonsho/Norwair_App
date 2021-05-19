@@ -34,48 +34,35 @@ class InfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
             "CO" -> {
                 title.text = getString(R.string.CO2)
                 desc.text = getString(R.string.CO2desc)
-
             }
             "NO" -> {
                 title.text = getString(R.string.NO)
                 desc.text = getString(R.string.NOdesc)
-
             }
             "NO2" -> {
                 title.text = getString(R.string.NO2)
                 desc.text = getString(R.string.NO2desc)
-
             }
             "NOx" -> {
                 title.text = getString(R.string.NOx)
                 desc.text = getString(R.string.NOxdesc)
-
             }
             "O3" -> {
                 title.text = getString(R.string.O3)
                 desc.text = getString(R.string.O3desc)
-
             }
             "PM(1/2.5/10)" -> {
                 title.text = getString(R.string.PM)
                 desc.text = getString(R.string.PMdesc)
-
             }
             "SO2" -> {
                 title.text = getString(R.string.SO2)
                 desc.text = getString(R.string.SO2desc)
-
             }
         }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-    private fun setText(unit: String): String {
-        return ("Kort beskrivelse av: $unit")
-    }
-
-
 
     companion object {
         // Method to create a new instance of this fragment
