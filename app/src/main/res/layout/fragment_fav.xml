@@ -27,12 +27,8 @@
             android:id="@+id/check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:text="Ingen kommuner satt\n som favoritt"
             android:fontFamily="@font/oxygen"
-=======
-            android:text="@string/empty"
->>>>>>> cc2f02138f390a06a53171328bb1d986cb93e93a
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#8D000000"
