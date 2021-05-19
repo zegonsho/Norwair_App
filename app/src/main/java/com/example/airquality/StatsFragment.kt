@@ -82,9 +82,9 @@ class StatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         val spinner: Spinner = viewOfLayout.findViewById(R.id.spinner)
         spinner.onItemSelectedListener = this
-        val aa = ArrayAdapter(this.context!!, android.R.layout.simple_spinner_item, stasjonsNavn)
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = aa
+        val arrayAdapter = ArrayAdapter(this.context!!, android.R.layout.simple_spinner_item, stasjonsNavn)
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = arrayAdapter
         return viewOfLayout
     }
     override fun onNothingSelected(parent: AdapterView<*>?) {

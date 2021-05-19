@@ -12,7 +12,7 @@
     <string name="SO2">Svoveldioksid (SO2)</string>
     <string name="CO2desc">Karbondioksid (CO2) dannes ved avbrenning av olje og naturgass hovedsakelig. Måles i mikrogram per kubikkmeter.</string>
     <string name="NOdesc">Nitrogenmonoksid (NO) er en ikke-brennbar gass som oppstår i forbrenningsmotorer og ved sigarettrøyking. Måles i mikrogram per kubikkmeter.</string>
-    <string name="NO2desc">Nitrogenmdioksid (NO2) er en gass, hovedsakelig funnet i eksos, fra dieselkjøretøy. Måles i mikrogram per kubikkmeter.</string>
+    <string name="NO2desc">Nitrogendioksid (NO2) er en gass, hovedsakelig funnet i eksos, fra dieselkjøretøy. Måles i mikrogram per kubikkmeter.</string>
     <string name="NOxdesc">NOx er en fellesbetegnelse for nitrogenoksider, og er reaktive gasser dannet ved forbrenning. Måles i mikrogram per kubikkmeter.</string>
     <string name="O3desc">Ozon (O3), bakkenær ozon. Hovedskilde er langtransportert forurensning fra kontinentet. Måles i mikrogram per kubikkmeter.</string>
     <string name="PMdesc">Partikler delt etter størrelse. Tallet etter PM står for maks størrelse i mikrometer (µm). PM10 er altså partikler mindre enn 10µm. Oppstår ved slitasje på piggdekk, samt fyring av blandt annet ved. Måles i mikrogram per kubikkmeter.</string>
