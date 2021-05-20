@@ -39,16 +39,16 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
 
         if (kommuneListe[pos].aqiVal?.toInt() ?: 0  < 60) {
             viewHolder.status.setBackgroundResource(R.drawable.ic_outline_sentiment_satisfied_24)
-            viewHolder.statusValue.text = "Good"
+            viewHolder.statusValue.text = "Bra"
         } else if ((kommuneListe[pos].aqiVal?.toInt() ?: 0  > 60) && (kommuneListe[pos].aqiVal?.toInt() ?: 0  < 120)) {
             viewHolder.status.setBackgroundResource(R.drawable.ic_outline_sentiment_neutral_24)
-            viewHolder.statusValue.text = "Moderate"
+            viewHolder.statusValue.text = "Moderat"
         } else if ((kommuneListe[pos].aqiVal?.toInt() ?: 0  > 120) && (kommuneListe[pos].aqiVal?.toInt() ?: 0  < 400)) {
             viewHolder.status.setBackgroundResource(R.drawable.ic_baseline_sentiment_very_dissatisfied_24_bad)
-            viewHolder.statusValue.text = "Bad"
+            viewHolder.statusValue.text = "Dårlig"
         } else if (kommuneListe[pos].aqiVal?.toInt() ?: 0  > 400) {
             viewHolder.status.setBackgroundResource(R.drawable.ic_outline_sentiment_very_dissatisfied_24)
-            viewHolder.statusValue.text = "Horrible"
+            viewHolder.statusValue.text = "Kritisk"
         }
 
         for(i in favorittList) {
