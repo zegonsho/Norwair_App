@@ -1,17 +1,21 @@
 package com.example.airquality
 
-import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class InfoFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var viewOfLayout: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        (context as AppCompatActivity).supportActionBar!!.title = "INFO"
+        val bottomNavigation : BottomNavigationView = activity!!.findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.navigation_info
         // Inflate the layout for this fragment
         viewOfLayout = inflater.inflate(R.layout.fragment_info, container, false)
         val spinner: Spinner = viewOfLayout.findViewById(R.id.spinnerInfo)

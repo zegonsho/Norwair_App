@@ -59,8 +59,7 @@ class KommuneAdapter(private val kommuneListe: MutableList<Adapter>, context: Co
 
         viewHolder.cardView.setOnClickListener {
             valgtKommune = kommuneListe[pos]
-            (context as AppCompatActivity).supportActionBar!!.title = "STATISTIKK"// ${(valgtKommune.kommuneNavn)?.toUpperCase()}"
-            val transaction = context.supportFragmentManager.beginTransaction()
+            val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container, StatsFragment.newInstance())
             transaction.addToBackStack(null)
             transaction.commit()

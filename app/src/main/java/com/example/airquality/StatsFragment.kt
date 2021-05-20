@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.coroutines.awaitString
 import com.github.mikephil.charting.charts.BarChart
@@ -25,6 +26,7 @@ import java.lang.Exception
 class StatsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var viewOfLayout: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        (context as AppCompatActivity).supportActionBar!!.title = "STATISTIKK"
         viewOfLayout = inflater.inflate(R.layout.fragment_stats, container, false)
         lateinit var descriptionArray: Array<Statistics>
         val lookupAqis = "https://api.nilu.no/lookup/aqis?component="

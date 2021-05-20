@@ -10,11 +10,13 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.coroutines.awaitString
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +33,9 @@ class SearchFragment : Fragment() {
     private val apiProxyIN2000 = "https://in2000-apiproxy.ifi.uio.no/weatherapi/nowcast/2.0/complete?"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        (context as AppCompatActivity).supportActionBar!!.title = "SØK"
+        val bottomNavigation : BottomNavigationView = activity!!.findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.navigation_search
         viewOfLayout = inflater.inflate(R.layout.fragment_search, container, false)
         // Create air quality data
         val gson = Gson()
@@ -89,7 +94,7 @@ class SearchFragment : Fragment() {
         }
         // Create searchview and listener
         val searchView: SearchView = viewOfLayout.findViewById(R.id.search)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             // When query is submitted
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchCounty(query!!, adapterList)
@@ -99,7 +104,7 @@ class SearchFragment : Fragment() {
             }
             // When query is changed
             override fun onQueryTextChange(query: String?): Boolean {
-                if (query.isNullOrEmpty()){
+                if (query.isNullOrEmpty()) {
                     updateRecycler(adapterList)
                 }
                 return true
@@ -122,7 +127,6 @@ class SearchFragment : Fragment() {
                 searchList.add(i)
             }
         }
-
         updateRecycler(searchList)
         // If query is not in list
         if(searchList.size <= 0){

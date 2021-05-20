@@ -31,7 +31,6 @@ data class StasjonerValgtKommune(val id: Number?, val zone: String?, val municip
 
 //Main
 data class Adapter(val kommuneNavn: String?, val fargekode: String?, val vaer: String?, val beskrivelse: String?, val ikonID: Int?, val aqiVal: Number?, var fav: Boolean? = false)
-//data class Statistics(val text: String?, val shortDescription: String?, val description: String?, val advice: String?)
 data class Luftkvalitet(val stasjon: String?, val verdinavn: String?, val verdi: String?)
 data class BaseLuftkvalitet(val Liste: MutableList<Luftkvalitet>)
 
