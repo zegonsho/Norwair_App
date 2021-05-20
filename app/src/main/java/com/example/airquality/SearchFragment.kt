@@ -44,13 +44,15 @@ class SearchFragment : Fragment() {
                 // Create recyclerview and adapter
                 stasjonArray = gson.fromJson(Fuel.get(niluStasjonsdataPM10).awaitString(), Array<Stasjon>::class.java)
                 areasArray = gson.fromJson(Fuel.get(niluLookupAreas).awaitString(), Array<Areas>::class.java)
-                var vaer = ""
-                var vaerBeskrivelse = ""
-                var pm10Max = 0f
-                var stasjonMedHoyestePM10Maaling: Stasjon
+
                 var c = 0
                 val adapterArray: Array<Adapter?> = arrayOfNulls(areasArray.size)
                 for (i in areasArray.indices) {
+                    var fargekode = ""
+                    var pm10Max = 0f
+                    var vaer = ""
+                    var vaerBeskrivelse = ""
+
                     for (dataStasjon in stasjonArray) {
                         if ((areasArray[i].area == dataStasjon.area)) {
                             try {
@@ -65,15 +67,14 @@ class SearchFragment : Fragment() {
                                 vaer = "Ingen data"
                                 vaerBeskrivelse = "Ingen data"
                             }
-                            stasjonMedHoyestePM10Maaling = dataStasjon
                             if (dataStasjon.value?.toFloat() ?: 0f > pm10Max) {
                                 pm10Max = dataStasjon.value?.toFloat() ?: 0f
-                                stasjonMedHoyestePM10Maaling = dataStasjon
+                                fargekode = dataStasjon.color.toString()
                             }
                             val res: Resources = resources
                             val mDrawableName = vaerBeskrivelse
                             val resID: Int = res.getIdentifier(mDrawableName, "raw", activity?.packageName)
-                            val temp = Adapter(areasArray[i].area, stasjonMedHoyestePM10Maaling.color, vaer, vaerBeskrivelse, resID, stasjonMedHoyestePM10Maaling.value, false)
+                            val temp = Adapter(areasArray[i].area, fargekode, vaer, vaerBeskrivelse, resID, pm10Max, false)
                             adapterArray[i] = temp
                         }
                     }
